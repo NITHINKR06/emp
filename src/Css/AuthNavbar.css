@@ -1,0 +1,57 @@
+/* AuthNavbar.css */
+
+/* Auth Navbar Header */
+.auth-navbar-header {
+    position: fixed;
+    top: 1rem; /* Equivalent to Tailwind's top-4 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1152px; /* Approximate to Tailwind's max-w-6xl (72rem) */
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 9999px;
+    padding: 0.75rem; /* Equivalent to p-3 */
+    z-index: 50;
+  }
+  
+  /* Inner Container */
+  .auth-navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem; /* Equivalent to px-6 */
+  }
+  
+  /* Logo */
+  .auth-navbar-logo {
+    font-size: 1.5rem; /* Equivalent to text-2xl */
+    font-weight: bold;
+    color: #2563eb; /* Equivalent to text-blue-600 */
+    text-decoration: none;
+  }
+  
+  /* Navigation Container */
+  .auth-navbar-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem; /* Approximate to space-x-8 */
+    padding-right: 4rem; /* Approximate to lg:pr-16; adjust with media queries if needed */
+  }
+  
+  /* Navigation Button */
+  .auth-navbar-button {
+    padding: 0.5rem 1.5rem; /* Equivalent to py-2 px-6 */
+    color: #ffffff;
+    background-color: #3b82f6; /* Equivalent to bg-blue-500 */
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .auth-navbar-button:hover {
+    background-color: #1e40af; /* Equivalent to hover:bg-blue-700 */
+  }
+  

@@ -1,0 +1,170 @@
+/* Overall Payment Page Background */
+.payment-page {
+    position: relative;
+    min-height: 100vh;
+    /* background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Not Found State */
+  .not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    text-align: center;
+  }
+  
+  .not-found-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .not-found-message {
+    font-size: 1.2rem;
+    color: #fff;
+  }
+  
+  /* Main Payment Card */
+  .payment-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Payment Portal Title */
+  .payment-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  /* Booking Details Card */
+  .booking-details {
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+  }
+  
+  .details-header {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 2px solid #e5e5e5;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  @media (min-width: 768px) {
+    .details-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .detail-item {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .detail-item span {
+    font-weight: bold;
+    color: #222;
+  }
+  
+  /* Payment Button */
+  .payment-button-container {
+    margin-top: 20px;
+  }
+  
+  .proceed-button {
+    background: #85b5fd;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .proceed-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Modal Overlay */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Window */
+  .modal-window {
+    background: #fff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+  }
+  
+  /* Modal Header */
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #e5e5e5;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    max-height: 600px;
+    /* width: 100%; */
+    overflow-y: auto;
+    padding: 10px;
+  }
+  

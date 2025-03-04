@@ -1,0 +1,149 @@
+/* Navbar.css */
+
+/* Wrapper (if needed) */
+.blu {
+    /* Global styles for the navbar wrapper if needed */
+  }
+  
+  /* Navbar Header */
+  .navbar-header {
+    font-family: sans-serif;
+    position: fixed;
+    top: 1rem; /* equivalent to Tailwind's top-4 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1152px; /* approximate Tailwind's max-w-6xl (72rem) */
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 9999px;
+    padding: 0.75rem; /* p-3 */
+    z-index: 50;
+  }
+  
+  /* Inner Container */
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem; /* px-6 */
+  }
+  
+  /* Logo */
+  .navbar-logo {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: bold;
+    color: #2563eb; /* text-blue-600 */
+    text-decoration: none;
+  }
+  
+  /* Desktop Navigation */
+  .desktop-nav {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem; /* gap-6 */
+    }
+    .mobile-menu-button {
+      display: none;
+    }
+  }
+  
+  /* Navigation Link (Common Style) */
+  .nav-link {
+    font-size: 1.125rem; /* text-lg */
+    color: #4b5563; /* text-gray-700 */
+    text-decoration: none;
+    padding-bottom: 0.25rem; /* pb-1 */
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .nav-link:hover {
+    color: #3b82f6; /* hover:text-blue-500 */
+  }
+  
+  /* Active Navigation Link */
+  .nav-link.active {
+    color: #2563eb; /* text-blue-600 */
+    font-weight: 600;
+    border-bottom: 2px solid #2563eb;
+  }
+  
+  /* Desktop Login Button */
+  .desktop-login-button {
+    padding: 0.5rem 1.25rem; /* py-2 px-5 */
+    color: #ffffff;
+    background-color: #3b82f6; /* bg-blue-500 */
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .desktop-login-button:hover {
+    background-color: #1e40af; /* hover:bg-blue-700 */
+  }
+  
+  /* Mobile Menu Button */
+  .mobile-menu-button {
+    color: #6b7280; /* text-gray-500 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  /* Mobile Navigation Menu */
+  .mobile-menu {
+    position: absolute;
+    top: 4rem; /* top-16 */
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem; /* p-6 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* space-y-4 */
+  }
+  
+  /* Mobile Navigation Links */
+  .mobile-nav-link {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600;
+    color: #4b5563; /* text-gray-700 */
+    text-decoration: none;
+    padding-bottom: 0.25rem;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .mobile-nav-link:hover {
+    color: #3b82f6; /* hover:text-blue-500 */
+  }
+  
+  .mobile-nav-link.active {
+    color: #2563eb; /* text-blue-600 */
+    border-bottom: 2px solid #2563eb;
+  }
+  
+  /* Mobile Login Button */
+  .mobile-login-button {
+    padding: 0.5rem 1.5rem; /* py-2 px-6 */
+    color: #ffffff;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .mobile-login-button:hover {
+    background-color: #1e40af;
+  }
+  

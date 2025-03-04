@@ -1,0 +1,117 @@
+/* Booking.css */
+
+/* Reset box sizing for consistency */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Container styling */
+.booking-container {
+  min-height: 100vh;
+  margin-top: 40px;
+  /* font-family: 'Roboto', sans-serif; */
+  font-size: 16px;
+  background-color: #f5f7fa;
+  padding: 2rem;
+}
+
+/* Main content area */
+.booking-main {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Grid layout */
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .booking-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .booking-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Booking card styles */
+.booking-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.booking-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Avatar and info section */
+.booking-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c3cfe2, #e2e8f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6573c3;
+  font-size: 2rem;
+}
+
+.booking-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.booking-job,
+.booking-location,
+.booking-experience {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.25rem 0;
+}
+
+.booking-experience {
+  margin-top: 0.5rem;
+}
+
+/* Button styles */
+.booking-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #7b68ee, #6a5acd);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-top: auto;
+}
+
+.booking-button:hover {
+  background: linear-gradient(135deg, #6a5acd, #7b68ee);
+  transform: scale(1.03);
+}

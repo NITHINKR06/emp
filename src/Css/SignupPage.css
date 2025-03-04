@@ -1,0 +1,194 @@
+    /* Global box-sizing fix */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* Define custom properties for colors and shadows */
+    :root {
+      --color-bg: #f9fafb;
+      --color-white: #ffffff;
+      --color-gray-300: #d1d5db;
+      --color-gray-400: #60a5fa;
+      --color-gray-500: #6b7280;
+      --color-gray-700: #4a5568;
+      --color-gray-900: #1a202c;
+      --color-blue-600: #2563eb;
+      --color-blue-700: #1d4ed8;
+      --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Global styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background-color: var(--color-bg);
+    }
+
+    /* Container */
+    .signup-container {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .signup-container {
+        padding: 3rem;
+      }
+    }
+
+    /* Signup Card */
+    .signup-card {
+      width: 100%;
+      max-width: 28rem;
+      background-color: var(--color-white);
+      box-shadow: var(--card-shadow);
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .signup-card:hover {
+      transform: translateY(-3px);
+    }
+
+    @media (min-width: 640px) {
+      .signup-card {
+        padding: 2rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .signup-card {
+        padding: 2.5rem;
+      }
+    }
+
+    /* Logo Section */
+    .logo-section {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo-image {
+      height: 4rem;
+      width: auto;
+    }
+
+    /* Signup Title */
+    .signup-title {
+      font-size: 1.875rem;
+      font-weight: bold;
+      color: var(--color-gray-900);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* Form Styles */
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Input Group */
+    .input-group {
+      position: relative;
+    }
+
+    /* Input Icon */
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      left: 0.75rem;
+      transform: translateY(-50%);
+      color: var(--color-gray-500);
+    }
+
+    /* Input Field */
+    .input-field {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      padding-left: 2.5rem;
+      border: 1px solid var(--color-gray-300);
+      border-radius: 0.375rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .input-field:focus {
+      border-color: var(--color-gray-400);
+      box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5);
+    }
+
+    /* Password Toggle Button */
+    .password-toggle {
+      position: absolute;
+      top: 50%;
+      right: 0.75rem;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--color-gray-500);
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Submit Button */
+    .submit-button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--color-blue-600);
+      color: var(--color-white);
+      border: none;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .submit-button:hover {
+      background-color: var(--color-blue-700);
+      transform: translateY(-2px);
+    }
+
+    /* Bottom Card */
+    .bottom-card {
+      width: 100%;
+      max-width: 28rem;
+      background-color: var(--color-white);
+      box-shadow: var(--card-shadow);
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .bottom-text {
+      font-size: 1rem;
+      color: var(--color-gray-700);
+      margin: 0;
+    }
+
+    .bottom-link {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-blue-600);
+      text-decoration: none;
+      transition: text-decoration 0.15s ease;
+    }
+
+    .bottom-link:hover {
+      text-decoration: underline;
+    }
