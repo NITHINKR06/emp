@@ -1,0 +1,234 @@
+/**********************************************
+  GLOBAL STYLES & VARIABLES
+***********************************************/
+:root {
+    --primary-color: #f17d00;
+    --bg-card: rgba(255, 255, 255, 0.25);
+    --bg-card-highlighted: rgba(255, 255, 255, 0.45);
+    --border-color: rgba(255, 255, 255, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  /**********************************************
+    SECTION WRAPPER
+  ***********************************************/
+  .pricing-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px;
+    text-align: center;
+    overflow: hidden;
+    background: #f9f9f9;
+  }
+  
+  /**********************************************
+    SECTION TITLES
+  ***********************************************/
+  .section-subtitle {
+    color: var(--primary-color);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  
+  /**********************************************
+    BILLING TOGGLE (MONTHLY/YEARLY)
+  ***********************************************/
+  .billing-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  /* Toggle Switch Container */
+  .toggle-switch {
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  /* Active state for yearly */
+  .toggle-switch.active {
+    background: var(--primary-color);
+  }
+  
+  /* Toggle Indicator */
+  .toggle-indicator {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  .toggle-switch.active .toggle-indicator {
+    transform: translateX(30px);
+  }
+  
+  /**********************************************
+    PRICING CARDS WRAPPER
+  ***********************************************/
+  .pricing-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  /**********************************************
+    PRICING CARD (IMPROVED GLASSMORPHISM STYLE)
+  ***********************************************/
+  .pricing-card {
+    position: relative;
+    width: 280px;
+    border-radius: 20px;
+    padding: 40px 30px;
+    margin-bottom: 20px;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 30px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #333;
+    overflow: hidden;
+  }
+  
+  /* Hover lift effect (fallback if JS animations not active) */
+  .pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Highlighted card style */
+  .pricing-card.highlighted {
+    background: var(--bg-card-highlighted);
+    border: 2px solid #fff;
+    box-shadow: 0 8px 40px rgba(255, 255, 255, 0.3);
+  }
+  
+  /**********************************************
+    CARD CONTENT & ICONS
+  ***********************************************/
+  .pricing-card-content {
+    text-align: center;
+  }
+  
+  .pricing-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    background: linear-gradient(45deg, rgba(241,125,0,0.8), rgba(255,94,98,0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /**********************************************
+    PLAN TITLES & PRICES
+  ***********************************************/
+  .plan-name {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  
+  .plan-price {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  .plan-price span {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-left: 5px;
+  }
+  
+  /**********************************************
+    PLAN FEATURES LIST
+  ***********************************************/
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+    text-align: left;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .plan-features li {
+    margin: 10px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  
+  /* Custom checkmark for each feature */
+  .plan-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+  }
+  
+  /**********************************************
+    BUTTON STYLING
+  ***********************************************/
+  .plan-button {
+    background: var(--primary-color);
+    border: none;
+    border-radius: 30px;
+    padding: 12px 30px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .plan-button:hover {
+    background: #ff5e62;
+    transform: scale(1.05);
+  }
+  
+  /**********************************************
+    RESPONSIVE ADJUSTMENTS
+  ***********************************************/
+  @media (max-width: 768px) {
+    .pricing-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+    .pricing-card {
+      width: 90%;
+      max-width: 350px;
+    }
+  }
+  

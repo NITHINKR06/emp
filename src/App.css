@@ -1,3 +1,11 @@
+:root {
+  --primary-color: #f17d00;
+  --text-color: #333;
+  --subtext-color: #666;
+  --border-color: #f1f1f1;
+  --hover-primary: #d16600;
+}
+
 .App {
   text-align: center;
 }
