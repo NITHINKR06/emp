@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FiUser } from "react-icons/fi";
 import "../../../../Css/Booking.css"; // Import custom CSS
+import { useNavigate } from "react-router-dom";
 
 const bookings = [
   {
@@ -9,7 +10,7 @@ const bookings = [
     name: "ABC",
     job: "Programmer",
     location: "New York, USA",
-    experience: "5",
+    experience: "5 years",
   },
   {
     id: "2",
@@ -25,30 +26,10 @@ const bookings = [
     location: "Not mentioned",
     experience: "Updating...",
   },
-  {
-    id: "4",
-    name: "No Name",
-    job: "No Job mentioned",
-    location: "Not mentioned",
-    experience: "Updating...",
-  },
-  {
-    id: "5",
-    name: "No Name",
-    job: "No Job mentioned",
-    location: "Not mentioned",
-    experience: "Updating...",
-  },
-  {
-    id: "6",
-    name: "No Name",
-    job: "No Job mentioned",
-    location: "Not mentioned",
-    experience: "Updating...",
-  },
 ];
 
 export default function Booking() {
+  const navigate = useNavigate();
   return (
     <div className="booking-container">
       <main className="booking-main">
@@ -73,9 +54,9 @@ export default function Booking() {
                   Experience: {booking.experience}
                 </p>
               </div>
-              <a href={`/user/booking/${booking.id}`} className="booking-button">
+              <button onClick={() => navigate(`/user/booking/${booking.id}`)} className="booking-button">
                 Check Booking
-              </a>
+              </button>
             </motion.div>
           ))}
         </div>

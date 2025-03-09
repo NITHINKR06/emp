@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import "../../../../Css/EmployeeLayout.css";
 import CalendarPage from "../../../../Components/Calender/CalendarPage";
+import { useParams } from 'react-router-dom';
 
 // Container variants for the entire page with reduced vertical movement.
 const containerVariants = {
@@ -43,6 +44,34 @@ const childVariants = {
   }
 };
 
+const bookings = [
+  {
+    id: "1",
+    name: "ABC",
+    job: "Programmer",
+    email: "abc@example.com",
+    about: "Software engineer with 5 years of experience.",
+    education: "B.Sc in Computer Science",
+  },
+  {
+    id: "2",
+    name: "No Name",
+    job: "Not Mentioned",
+    email: "unknown@example.com",
+    about: "Details updating...",
+    education: "Not mentioned",
+  },
+  {
+    id: "3",
+    name: "XYZ",
+    job: "Developer",
+    email: "xyz@example.com",
+    about: "Full-stack developer with expertise in React and Node.js.",
+    education: "M.Sc in Software Engineering",
+  },
+];
+
+
 function SameLayout() {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
@@ -51,6 +80,19 @@ function SameLayout() {
   const [reviews, setReviews] = useState([]);
   // Track open details for each section.
   const [openDetails, setOpenDetails] = useState({});
+
+  const { id } = useParams(); // Extract ID from URL
+  const [selectedBooking, setSelectedBooking] = useState(null);
+
+  useEffect(() => {
+    // Find booking by ID
+    const booking = bookings.find((b) => b.id === id);
+    setSelectedBooking(booking);
+  }, [id]);
+
+  if (!selectedBooking) {
+    return <h2>Booking not found</h2>;
+  }
 
   const toggleDetails = (key) => {
     setOpenDetails(prev => ({ ...prev, [key]: !prev[key] }));
@@ -81,40 +123,14 @@ function SameLayout() {
     >
       {/* Top Section */}
       <motion.div className="top-section" variants={childVariants}>
-        <motion.div className="left-side" variants={childVariants}>
+      <motion.div className="left-side">
           <div className="photo-placeholder">Photo</div>
           <ul className="info-list">
-            {['name', 'email', 'about', 'education', 'more'].map((key) => (
-              <motion.li key={key} variants={childVariants}>
-                <div className="list-header">
-                  <span>
-                    {key === 'name' && 'Name: John Doe'}
-                    {key === 'email' && 'Email: john@example.com'}
-                    {key === 'about' && 'About: Brief intro...'}
-                    {key === 'education' && 'Education: B.Sc in Computer Science'}
-                    {key === 'more' && 'More...'}
-                  </span>
-                  <button className="details-btn" onClick={() => toggleDetails(key)}>Details</button>
-                </div>
-                <AnimatePresence>
-                  {openDetails[key] && (
-                    <motion.div
-                      className="details-content"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {key === 'name' && 'John Doe is a seasoned professional with over 10 years of experience in software development.'}
-                      {key === 'email' && 'Contact via email for professional inquiries.'}
-                      {key === 'about' && 'A quick overview about John, highlighting his interests and career achievements.'}
-                      {key === 'education' && 'Graduated with honors from XYZ University with a major in Computer Science.'}
-                      {key === 'more' && 'Additional information about projects, skills, and certifications.'}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.li>
-            ))}
+            <li><strong>Name:</strong> {selectedBooking.name}</li>
+            <li><strong>Email:</strong> {selectedBooking.email}</li>
+            <li><strong>Job:</strong> {selectedBooking.job}</li>
+            <li><strong>About:</strong> {selectedBooking.about}</li>
+            <li><strong>Education:</strong> {selectedBooking.education}</li>
           </ul>
         </motion.div>
         <motion.div className="right-side" variants={childVariants}>

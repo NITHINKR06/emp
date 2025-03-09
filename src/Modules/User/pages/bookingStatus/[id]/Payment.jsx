@@ -96,7 +96,7 @@ export default function Payment() {
                 <h2>Checkout</h2>
                 <button onClick={() => setShowModal(false)} className="close-button">&times;</button>
               </div>
-              <div className="modal-content">
+              <div className="model">
                 <PaymentsModel />
               </div>
             </motion.div>
