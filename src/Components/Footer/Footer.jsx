@@ -97,7 +97,7 @@ export default function Footer() {
           </div>
 
           <p className="footer-copyright">
-            &copy; 2025. MentorConnect. All rights reserved.
+            &copy; 2025. Employment. All rights reserved.
           </p>
         </div>
       </div>

@@ -36,7 +36,7 @@
   /* Left panel: Gradient background with centered content */
   .left-panel {
     flex: 1;
-    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    background: linear-gradient(135deg, #ea7c22, #e5d3ac);
     color: #fff;
     padding: 2rem;
     display: flex;
@@ -49,6 +49,7 @@
     font-size: 2.5rem;
     font-weight: 700;
     text-align: center;
+    color: #ffffff;
     margin-bottom: 1.5rem;
   }
   
@@ -186,7 +187,7 @@
     padding: 0.9rem;
     font-size: 1.1rem;
     color: #fff;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, #ea7c22, #e1b64a);
     border: none;
     border-radius: 5px;
     cursor: pointer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import '../../Css/ContactForm.css'; // Import the external CSS file
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import '../../Css/ContactForm.css'; // External CSS for layout and typography
 
 const containerVariants = {
   hidden: { opacity: 0, scale: 0.95 },
@@ -8,11 +9,12 @@ const containerVariants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.4,
+      duration: 0.5,
       when: 'beforeChildren',
       staggerChildren: 0.1,
     },
   },
+  hover: { scale: 1.02, transition: { duration: 0.3 } },
 };
 
 const itemVariants = {
@@ -35,6 +37,7 @@ export default function ContactForm() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      whileHover="hover"
       className="contact-container"
     >
       <div className="contact-card">
@@ -46,23 +49,22 @@ export default function ContactForm() {
           </p>
           <div className="contact-info-list">
             <motion.div variants={itemVariants} className="contact-info-item">
-              <span className="info-label">Phone</span>
+              <span className="info-label"><FaPhone className="contact-icon" /> Phone</span>
               <span className="info-text">+0123 4567 8910</span>
             </motion.div>
             <motion.div variants={itemVariants} className="contact-info-item">
-              <span className="info-label">Email</span>
+              <span className="info-label"><FaEnvelope className="contact-icon" /> Email</span>
               <span className="info-text">hello@flowbase.com</span>
             </motion.div>
             <motion.div variants={itemVariants} className="contact-info-item">
-              <span className="info-label">Address</span>
+              <span className="info-label"><FaMapMarkerAlt className="contact-icon" /> Address</span>
               <span className="info-text">102 Street 2714 Don</span>
             </motion.div>
           </div>
         </motion.div>
-
         {/* Contact Form Section */}
         <motion.div variants={itemVariants} className="contact-form">
-          <form onSubmit={handleSubmit} className="contact-form-fields">
+          <div onSubmit={handleSubmit} className="contact-form-fields">
             <motion.div variants={itemVariants} className="form-field">
               <label className="form-label">Name</label>
               <input type="text" className="form-input" required />
@@ -83,10 +85,11 @@ export default function ContactForm() {
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
               className="form-button"
+              onClick={handleSubmit}
             >
               Send Message
             </motion.button>
-          </form>
+          </div>
         </motion.div>
       </div>
     </motion.div>

@@ -1,0 +1,515 @@
+/* Base styles and resets */
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.header h1 {
+  font-size: 2.2rem;
+  color: #ff9800; /* orange header */
+}
+
+/* Top Section */
+.top-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 80px;
+}
+
+/* Left Side - Modern Profile Card Design */
+.container .top-section .left-side {
+  position: relative;
+  background: #fff;
+  border-radius: 15px;
+  padding-top: 70px; /* space for gradient header */
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex: 1 1 300px;
+  max-width: 100%;
+}
+
+/* Gradient header using pseudo-element */
+.container .top-section .left-side::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  z-index: 1;
+}
+
+/* Circular Photo Placeholder */
+.photo-placeholder {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #ff9800;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Info List styling within left-side */
+.info-list {
+  margin-top: 140px; /* makes space for the profile photo */
+  padding: 0;
+  list-style: none;
+  position: relative;
+  z-index: 2;
+}
+
+.info-list li {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #555;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+/* Flex container to align title and details button */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-list li:hover {
+  background: #fff3e0; /* light orange hover effect */
+}
+
+/* Details Button */
+.details-btn {
+  background: none;
+  border: none;
+  color: #ff9800;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+/* Details Content - initially hidden */
+.details-content {
+  display: none;
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: #777;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Right Side: Input-section & Calendar-box */
+.right-side {
+  flex: 2 1 800px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.input-section {
+  flex: 1 1 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(255, 152, 0, 0.1);
+}
+
+.input-row {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-row label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #ff9800;
+}
+
+.input-row input {
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-row input:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 5px rgba(255, 152, 0, 0.4);
+  outline: none;
+}
+
+/* Calendar Box */
+.calendar-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(255, 152, 0, 0.1);
+}
+
+/* Buttons Row */
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.button-row button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fff;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Primary Button */
+.btn1 {
+  background: linear-gradient(135deg, #fb8c00, #ff9800);
+}
+
+.btn1:hover {
+  background: linear-gradient(135deg, #f57c00, #ef6c00);
+  transform: translateY(-2px);
+}
+
+/* Secondary Button */
+.btn2 {
+  background: linear-gradient(135deg, #ffcc80, #ffb74d);
+}
+
+.btn2:hover {
+  background: linear-gradient(135deg, #ffb74d, #ffa726);
+  transform: translateY(-2px);
+}
+
+.reviews-box,
+.display-reviews {
+  flex: 1 1 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(255, 152, 0, 0.1);
+}
+
+.reviews-box h3,
+.display-reviews h3 {
+  margin-bottom: 15px;
+  color: #ff9800;
+}
+
+.reviews-box input,
+.reviews-box textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reviews-box input:focus,
+.reviews-box textarea:focus {
+  border-color: #66bb6a;
+  box-shadow: 0 0 5px rgba(102, 187, 106, 0.4);
+  outline: none;
+}
+
+.reviews-box button {
+  background: linear-gradient(135deg, #66bb6a, #43a047);
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.reviews-box button:hover {
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+  transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+/* For screens under 992px, stack input-section and calendar-box vertically */
+@media (max-width: 992px) {
+  .right-side {
+    flex-direction: column;
+  }
+
+  .input-section{
+    width: 90%;
+  }
+
+  .calendar-box {
+    background: #fff;
+    border-radius: 8px;
+    /* padding: 10px; */
+    box-shadow: 0 4px 8px rgba(255, 152, 0, 0.1);
+  }
+}
+
+/* For screens under 768px, stack the entire top-section */
+@media (max-width: 768px) {
+  .top-section {
+    flex-direction: column;
+  }
+  .left-side,
+  .right-side {
+    flex: 1 1 100%;
+  }
+  .button-row {
+    flex-direction: column;
+  }
+  .button-row button {
+    width: 100%;
+  }
+  .reviews-section {
+    flex-direction: column;
+  }
+}
+
+/* Additional adjustments for very small screens */
+@media (max-width: 576px) {
+  .left-side {
+    padding-top: 50px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  .left-side::before {
+    height: 90px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .photo-placeholder {
+    width: 100px;
+    height: 100px;
+    top: 40px;
+  }
+  .info-list {
+    margin-top: 120px;
+  }
+}
+
+/* Container for floating label input */
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Base input styles for floating label */
+.input-container input {
+  width: 100%;
+  padding: 10px 5px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
+  transition: border-color 0.3s;
+}
+
+/* Remove browser autofill background */
+.input-container input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px transparent inset;
+}
+
+/* Focus effect on floating label input */
+.input-container input:focus {
+  outline: none;
+  border-bottom-color: #ff9800;
+}
+
+/* Floating label base styles */
+.input-container label {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  pointer-events: none;
+  font-size: 1rem;
+  color: #aaa;
+  transition: all 0.3s ease;
+}
+
+/* Move label when input is focused or contains text */
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label {
+  top: -18px;
+  font-size: 0.8rem;
+  color: #ff9800;
+}
+
+/* Reviews Section Layout */
+/* Reviews Section Layout */
+.reviews-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+/* Form & Display Container Styles */
+.reviews-form,
+.reviews-display {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Headings */
+.reviews-form h3,
+.reviews-display h3 {
+  margin-bottom: 15px;
+  color: #ff9800;
+  text-align: center;
+}
+
+/* Rating Stars Styles */
+.rating-stars {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.rating-stars input {
+  display: none;
+}
+
+.rating-stars label {
+  font-size: 2rem;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Floating Label Input Styles */
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-container input,
+.input-container textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-container input:focus,
+.input-container textarea:focus {
+  border-color: #ff9800;
+}
+
+.input-container label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  pointer-events: none;
+  color: #aaa;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label,
+.input-container textarea:focus + label,
+.input-container textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: #ff9800;
+  background: #fff;
+  padding: 0 5px;
+}
+
+/* Submit Button Styles */
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #fb8c00, #ff9800);
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: linear-gradient(135deg, #f57c00, #ef6c00);
+  transform: translateY(-2px);
+}
+
+/* Review Card Styles */
+.review-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(255, 152, 0, 0.1);
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #ff9800;
+}
+
+.review-rating {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.review-text {
+  font-size: 0.9rem;
+  color: #555;
+}
+

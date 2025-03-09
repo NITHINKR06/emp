@@ -10,21 +10,27 @@
 /* Container styling */
 .booking-container {
   min-height: 100vh;
-  margin-top: 40px;
-  /* font-family: 'Roboto', sans-serif; */
+  /* margin-top: 40px; */
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   background-color: #f5f7fa;
   padding: 2rem;
+  justify-content: center;
 }
 
 /* Main content area */
 .booking-main {
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  padding-left: 8%;
+  margin-left: 6%;
+  margin-top: 80px;
   max-width: 1200px;
 }
 
 /* Grid layout */
 .booking-grid {
+  /* justify-content: center; */
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
@@ -71,11 +77,11 @@
   height: 80px;
   margin: 0 auto 1rem auto;
   border-radius: 50%;
-  background: linear-gradient(135deg, #c3cfe2, #e2e8f0);
+  background: linear-gradient(135deg, #eac1ac, #fbd1bc);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6573c3;
+  color: #f17d00;
   font-size: 2rem;
 }
 
@@ -101,7 +107,7 @@
 /* Button styles */
 .booking-button {
   display: inline-block;
-  background: linear-gradient(135deg, #7b68ee, #6a5acd);
+  background: linear-gradient(135deg, #fa9223, #e8af72);
   color: #fff;
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
@@ -112,6 +118,6 @@
 }
 
 .booking-button:hover {
-  background: linear-gradient(135deg, #6a5acd, #7b68ee);
+  background: linear-gradient(135deg, #f17d00, #ff9e36);
   transform: scale(1.03);
 }

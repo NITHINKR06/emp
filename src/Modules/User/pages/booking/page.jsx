@@ -73,7 +73,7 @@ export default function Booking() {
                   Experience: {booking.experience}
                 </p>
               </div>
-              <a href={`/employee/bookingStatus/${booking.id}`} className="booking-button">
+              <a href={`/user/booking/${booking.id}`} className="booking-button">
                 Check Booking
               </a>
             </motion.div>

@@ -48,7 +48,7 @@
   .payment-title {
     font-size: 3rem;
     font-weight: 800;
-    color: #333;
+    color: #ea7c22;
     margin-bottom: 30px;
   }
   
@@ -64,7 +64,7 @@
   .details-header {
     font-size: 2rem;
     font-weight: 700;
-    color: #444;
+    color: #ea7c22;
     border-bottom: 2px solid #e5e5e5;
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -98,8 +98,8 @@
   }
   
   .proceed-button {
-    background: #85b5fd;
-    color: #fff;
+    background: #f17d00;
+    color: #ffffff;
     font-size: 1.2rem;
     padding: 15px 30px;
     border: none;
@@ -120,7 +120,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.655);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,21 +142,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid #e5e5e5;
+    border-bottom: 2px solid #aaaaaa;
     padding-bottom: 10px;
     margin-bottom: 15px;
   }
   
   .modal-header h2 {
     font-size: 1.8rem;
-    color: #333;
+    color: #e66e05;
   }
   
   .close-button {
     background: none;
     border: none;
     font-size: 1.8rem;
-    color: #333;
+    color: #f10000;
     cursor: pointer;
   }
   

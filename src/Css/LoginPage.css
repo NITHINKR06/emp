@@ -76,14 +76,16 @@
 
 /* Input Group */
 .input-group {
-  position: relative;
+  /* position: relative; */
+  /* flex-wrap: wrap; */
+  gap: 10px;
 }
 
 /* Input Icon */
 .input-icon {
   position: absolute;
   top: 50%;
-  left: 0.75rem;
+  left: 1rem;
   transform: translateY(-50%);
   color: var(--subtext-color);
 }
@@ -92,7 +94,7 @@
 .input-field {
   width: 100%;
   padding: 0.75rem 1rem;
-  padding-left: 2.5rem;
+  padding-left: 10%;
   border: 1px solid var(--border-color);
   border-radius: 0.375rem;
   outline: none;

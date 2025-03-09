@@ -1,154 +1,162 @@
+/* Define color variables using only your three colors */
+:root {
+  --primary-color: #f17d00;   /* Vibrant orange */
+  --text-color: #000;         /* Black */
+  --subtext-color: #000;      /* Black (using only one tone for text) */
+  --border-color: #000;       /* Black borders/gradients */
+  --hover-primary: #f17d00;   /* Keeping primary for hover effects */
+}
+
 /* Container */
 .about-us-container {
-    position: relative;
-    margin-top: 5rem; /* similar to Tailwind's mt-20 */
-    min-height: 100vh;
-    background: linear-gradient(white, #f7fafc); /* from-white to-gray-100 */
-  }
-  
-  /* Hero Section */
+  position: relative;
+  margin-top: 5rem; /* similar to Tailwind's mt-20 */
+  min-height: 100vh;
+  /* Gradient from white to black for a bold effect */
+}
+
+/* Hero Section */
+.hero-section {
+  max-width: 72rem; /* equivalent to Tailwind's max-w-6xl */
+  margin: 0 auto;
+  padding: 3rem 1rem; /* py-12 and px-4 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
   .hero-section {
-    max-width: 72rem; /* equivalent to Tailwind's max-w-6xl */
-    margin: 0 auto;
-    padding: 3rem 1rem; /* py-12 and px-4 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
   }
-  
-  @media (min-width: 768px) {
-    .hero-section {
-      flex-direction: row;
-    }
-  }
-  
+}
+
+.hero-text {
+  width: 100%;
+  margin-bottom: 2rem; /* mb-8 */
+}
+
+@media (min-width: 768px) {
   .hero-text {
-    width: 100%;
-    margin-bottom: 2rem; /* mb-8 */
+    width: 50%;
+    margin-bottom: 0;
   }
-  
-  @media (min-width: 768px) {
-    .hero-text {
-      width: 50%;
-      margin-bottom: 0;
-    }
-  }
-  
+}
+
+.hero-title {
+  font-size: 2.25rem; /* Tailwind text-4xl */
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+@media (min-width: 768px) {
   .hero-title {
-    font-size: 2.25rem; /* Tailwind text-4xl */
-    font-weight: bold;
-    color: #2d3748; /* gray-800 */
+    font-size: 3rem; /* Tailwind text-5xl */
   }
-  
-  @media (min-width: 768px) {
-    .hero-title {
-      font-size: 3rem; /* Tailwind text-5xl */
-    }
-  }
-  
-  .hero-subtitle {
-    margin-top: 1rem; /* mt-4 */
-    font-size: 1.125rem; /* text-lg */
-    color: #718096; /* gray-600 */
-  }
-  
+}
+
+.hero-subtitle {
+  margin-top: 1rem; /* mt-4 */
+  font-size: 1.125rem; /* text-lg */
+  color: var(--subtext-color);
+}
+
+.hero-image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
   .hero-image-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    width: 50%;
   }
-  
-  @media (min-width: 768px) {
-    .hero-image-container {
-      width: 50%;
-    }
-  }
-  
-  .image-wrapper {
-    position: relative;
-    width: 16rem;  /* Tailwind w-64 */
-    height: 16rem; /* Tailwind h-64 */
-  }
-  
-  .image-bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #4299e1; /* blue-500 */
-    border-radius: 0.5rem; /* rounded-lg */
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-lg */
-  }
-  
-  .image-foreground {
-    position: absolute;
-    top: 1rem; /* inset-4 */
-    right: 1rem;
-    bottom: 1rem;
-    left: 1rem;
-    background-color: #f56565; /* red-500 */
-    border-radius: 0.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); /* shadow-2xl */
-  }
-  
-  .image {
-    border-radius: 0.5rem; /* rounded-lg */
-  }
-  
-  /* Mission and Vision Section */
+}
+
+.image-wrapper {
+  position: relative;
+  width: 16rem;  /* Tailwind w-64 */
+  height: 16rem; /* Tailwind h-64 */
+}
+
+.image-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* background-color: var(--primary-color);  Use your primary color */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-lg */
+}
+
+.image-foreground {
+  position: absolute;
+  top: 1rem; /* inset-4 */
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  /* background-color: var(--hover-primary);  Use your primary color for hover state */
+  border-radius: 0.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); /* shadow-2xl */
+}
+
+.image {
+  border-radius: 0.5rem; /* rounded-lg */
+}
+
+/* Mission and Vision Section */
+.mission-section {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 3rem 1rem; /* py-12 and px-4 */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem; /* gap-8 */
+}
+
+@media (min-width: 768px) {
   .mission-section {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 3rem 1rem; /* py-12 and px-4 */
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem; /* gap-8 */
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  @media (min-width: 768px) {
-    .mission-section {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  /* Card Component */
-  .card {
-    padding: 2rem; /* p-8 */
-    background-color: white;
-    border-radius: 0.75rem; /* rounded-xl */
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* shadow-md */
-    transition: box-shadow 0.3s;
-  }
-  
-  .card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-xl */
-  }
-  
-  .icon-wrapper {
-    position: relative;
-    width: 4rem;  /* Tailwind w-16 */
-    height: 4rem; /* Tailwind h-16 */
-    margin-bottom: 1rem; /* mb-4 */
-  }
-  
-  .card-title {
-    font-size: 1.5rem; /* Tailwind text-2xl */
-    font-weight: 600;
-    color: #2d3748;
-  }
-  
-  .card-text {
-    margin-top: 0.5rem; /* mt-2 */
-    color: #718096;
-  }
-  
-  /* Footer Section */
-  .footer-section {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 2rem 1rem; /* py-8 and px-4 */
-    text-align: center;
-    color: #a0aec0; /* gray-500 */
-  }
-  
+}
+
+/* Card Component */
+.card {
+  padding: 2rem; /* p-8 */
+  background-color: white; /* white background for cards */
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* shadow-md */
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-xl */
+}
+
+.icon-wrapper {
+  position: relative;
+  width: 4rem;  /* Tailwind w-16 */
+  height: 4rem; /* Tailwind h-16 */
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.card-title {
+  font-size: 1.5rem; /* Tailwind text-2xl */
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.card-text {
+  margin-top: 0.5rem; /* mt-2 */
+  color: var(--subtext-color);
+}
+
+/* Footer Section */
+.footer-section {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1rem; /* py-8 and px-4 */
+  text-align: center;
+  color: var(--subtext-color);
+}

@@ -7,6 +7,10 @@
     padding: 1.5rem;  /* similar to p-6 */
     margin-top: 1.75rem; /* similar to mt-7 */
   }
+
+  .contact-icon{
+    color: #e79655;
+  }
   
   /* Card */
   .contact-card {
@@ -58,7 +62,7 @@
     font-size: 2.25rem;  /* text-4xl */
     font-weight: bold;
     margin-bottom: 1rem; /* mb-4 */
-    color: #2d3748;      /* gray-800 */
+    color: #ea7c22;      /* gray-800 */
   }
   
   .contact-subtitle {
@@ -71,11 +75,18 @@
   .contact-info-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;  /* space-y-4 */
+    gap: 2rem;  /* space-y-4 */
+  }
+
+  .contact-info-item{
+    display: flex;
+    gap: 0.5rem;  /* space-y-4 */
+    flex-direction: column;
   }
   
   .info-label {
     display: block;
+    color: #ea7c22;
     font-weight: 600;
   }
   
@@ -106,8 +117,8 @@
   .form-input {
     width: 100%;
     border: 1px solid #d1d5db;  /* border-gray-300 */
-    padding: 0.5rem 1rem;         /* px-4 py-2 */
-    border-radius: 0.375rem;      /* rounded-md */
+    padding: 1rem 1rem;         /* px-4 py-2 */
+    border-radius: 1rem;      /* rounded-md */
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
@@ -120,8 +131,8 @@
   /* Submit Button */
   .form-button {
     width: 100%;
-    border: 1px solid #4a5568;  /* border-gray-700 */
-    color: #4a5568;             /* text-gray-700 */
+    border: 1px solid #ff7300;  /* border-gray-700 */
+    color: #ea7c22;             /* text-gray-700 */
     padding: 0.75rem;           /* py-3 */
     border-radius: 0.375rem;    /* rounded-md */
     font-weight: 600;
@@ -130,5 +141,9 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
   
+  .form-button:hover{
+    background-color: #ea7c22;
+    color: white;
+  }
   /* Hover state is managed by framer-motion animations */
   
