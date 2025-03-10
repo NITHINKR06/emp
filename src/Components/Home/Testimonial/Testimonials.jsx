@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../../../Css/Testimonials.css";
 import { FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import profile1 from "../../../img/image.png";
-import profile2 from "../../../img/image.png";
+import { CgProfile } from "react-icons/cg";
 
 function Testimonials() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -59,7 +58,7 @@ function Testimonials() {
           {/* Card #1 */}
           <div className="testimonial-card">
             <div className="user-image">
-              <img src={profile1} alt="Jonathan Smart" />
+              <CgProfile className="icon-user" style={{width:'60px', height:'60px'}}/>
             </div>
             <div className="stars">
               <FaStar />
@@ -80,7 +79,7 @@ function Testimonials() {
           {/* Card #2 */}
           <div className="testimonial-card">
             <div className="user-image">
-              <img src={profile2} alt="Martino Tino" />
+              <CgProfile className="icon-user" style={{width:'60px', height:'60px'}}/>
             </div>
             <div className="stars">
               <FaStar />
@@ -101,7 +100,7 @@ function Testimonials() {
           {/* Card #3 */}
           <div className="testimonial-card">
             <div className="user-image">
-              <img src={profile2} alt="Martino Tino" />
+              <CgProfile className="icon-user" style={{width:'60px', height:'60px'}}/>
             </div>
             <div className="stars">
               <FaStar />

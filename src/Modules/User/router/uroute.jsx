@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import Booking from '../pages/booking/page'
 import BookingStatu from '../pages/bookingStatus/BookingStatu'
 import Payment from '../pages/bookingStatus/[id]/Payment'
-import EmployeeLayout from '../pages/dashboard/EmployeeLayout'
+import SameLayout from '../pages/booking/EmployeeLayout'
 
 export default function URoute() {
   return (
@@ -15,7 +15,7 @@ export default function URoute() {
           <Route path='/booking' element={<Booking/>} />
           <Route path='/booking/status' element={<BookingStatu/>} />
           <Route path='/booking/status/:id' element={<Payment/>} />
-          <Route path='/booking/:id' element={<EmployeeLayout/>} />
+          <Route path='/booking/:id' element={<SameLayout/>} />
           {/* <Route path='/StudentRegister' element={<StudentRegister/>} /> */}
       </Routes>
     </div>

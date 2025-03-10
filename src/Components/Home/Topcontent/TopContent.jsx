@@ -6,13 +6,14 @@ import landing from "../../../img/image.png";
 export default function TopContent() {
   return (
     <main className="main">
+
       {/* Left Section - Text Content */}
       <motion.div 
         className="content"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-      >
+        >
         <h1 className="title">
           Elevate Your Learning Journey 🚀
         </h1>
@@ -35,7 +36,9 @@ export default function TopContent() {
           >
             Explore Courses
           </motion.button>
-        </div>
+        </div> <br /><br /><br />
+        //TODO: login pages icons alignment and change all the images to its origin
+
       </motion.div>
 
       {/* Right Section - Image */}
@@ -51,6 +54,7 @@ export default function TopContent() {
           className="landing-image"
         />
       </motion.div>
+      
     </main>
   );
 }

@@ -43,7 +43,7 @@
   flex-direction: row;
   align-items: center;
   gap: 2rem; /* Approximate to space-x-8 */
-  padding-right: 4rem; /* Approximate to lg:pr-16; adjust with media queries if needed */
+  /* padding-right: 4rem; Approximate to lg:pr-16; adjust with media queries if needed */
 }
 
 /* Navigation Button */

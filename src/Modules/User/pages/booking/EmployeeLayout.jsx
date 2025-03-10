@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import "../../../../Css/EmployeeLayout.css";
 import CalendarPage from "../../../../Components/Calender/CalendarPage";
 import { useParams } from 'react-router-dom';
@@ -79,7 +79,7 @@ function SameLayout() {
   const [message, setMessage] = useState('');
   const [reviews, setReviews] = useState([]);
   // Track open details for each section.
-  const [openDetails, setOpenDetails] = useState({});
+  // const [openDetails, setOpenDetails] = useState({});
 
   const { id } = useParams(); // Extract ID from URL
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -93,10 +93,6 @@ function SameLayout() {
   if (!selectedBooking) {
     return <h2>Booking not found</h2>;
   }
-
-  const toggleDetails = (key) => {
-    setOpenDetails(prev => ({ ...prev, [key]: !prev[key] }));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

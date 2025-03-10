@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 import img from "../../img/image.png"; // Adjust path as needed
-import "../../Css/LoginPage.css"; // Import the external CSS file
+import "../../Css/LoginPage.css"; // Import external CSS
 
 const cardAnimation = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: { 
-    opacity: 1, 
-    scale: 1, 
-    transition: { duration: 0.1 } // Fast, nearly instant animation
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.1 }
   },
 };
 
@@ -36,31 +36,36 @@ export default function LoginPage() {
         <div className="login-card-inner">
           {/* Logo Section */}
           <div className="logo-section">
-            <img src={img} alt="Logo" className="logo-image" />
+            <h1>Employment</h1>
           </div>
           <h2 className="login-title">Login</h2>
           <form onSubmit={handleLogin} className="login-form">
-            {/* Email Field */}
+            {/* Email Field with Icon */}
             <div className="input-group">
-              <FiMail size={20} className="input-icon" />
+              {/* <span className="input-icon">
+                <FaEnvelope />
+              </span> */}
               <input
                 type="email"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input-field"
+                className="input-field with-icon"
                 required
               />
             </div>
-            {/* Password Field with Toggle */}
+            {/* Password Field with Icon and Toggle */}
             <div className="input-group">
-              <FiLock size={20} className="input-icon" />
+              {/* <span className="input-icon">
+                <FaLock />
+              </span> */}
+
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input-field"
+                className="input-field with-icon"
                 required
               />
               <button
@@ -68,7 +73,7 @@ export default function LoginPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className="password-toggle"
               >
-                {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                {showPassword ? "Hide" : "Show"}
               </button>
             </div>
             <button type="submit" className="submit-button">
