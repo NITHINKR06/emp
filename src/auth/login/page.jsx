@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaLock } from "react-icons/fa";
-import img from "../../img/image.png"; // Adjust path as needed
-import "../../Css/LoginPage.css"; // Import external CSS
+import "../../Css/LoginPage.css";
 
 const cardAnimation = {
   hidden: { opacity: 0, scale: 0.95 },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.1 }
+    transition: { duration: 0.1 },
   },
 };
 
@@ -24,65 +22,80 @@ export default function LoginPage() {
     // Implement login logic here
   };
 
+  const images = [
+    "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg",
+    "https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg",
+    "https://images.pexels.com/photos/3767377/pexels-photo-3767377.jpeg",
+    "https://images.pexels.com/photos/18105/pexels-photo.jpg"
+  ];
+  
+  const randomImage = images[Math.floor(Math.random() * images.length)];
+  
+
   return (
     <div className="login-container">
       {/* Login Card */}
-      <motion.div 
-        initial="hidden" 
+      <motion.div
+        initial="hidden"
         animate="visible"
         variants={cardAnimation}
         className="login-card"
       >
         <div className="login-card-inner">
-          {/* Logo Section */}
-          <div className="logo-section">
-            <h1>Employment</h1>
-          </div>
-          <h2 className="login-title">Login</h2>
-          <form onSubmit={handleLogin} className="login-form">
-            {/* Email Field with Icon */}
-            <div className="input-group">
-              {/* <span className="input-icon">
-                <FaEnvelope />
-              </span> */}
-              <input
-                type="email"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="input-field with-icon"
-                required
-              />
-            </div>
-            {/* Password Field with Icon and Toggle */}
-            <div className="input-group">
-              {/* <span className="input-icon">
-                <FaLock />
-              </span> */}
+          {/* Left Image Section */}
+          <div className="card-left">
+        <img src={randomImage} alt="Signup Image" className="card-image" />
 
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="input-field with-icon"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="password-toggle"
-              >
-                {showPassword ? "Hide" : "Show"}
+        </div>
+
+          {/* Right Content Section */}
+          <div className="login-card-content">
+            {/* Logo Section */}
+            <div className="logo-section">
+              <h1>Employment</h1>
+            </div>
+            <h2 className="login-title">Login</h2>
+
+            <form onSubmit={handleLogin} className="login-form">
+              {/* Email Field */}
+              <div className="input-group">
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="input-field"
+                  required
+                />
+              </div>
+
+              <div className="input-group">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="input-field"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="password-toggle"
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
+
+              <button type="submit" className="submit-button">
+                Log in
               </button>
-            </div>
-            <button type="submit" className="submit-button">
-              Log in
-            </button>
-            <div className="forgot-password">
-              <a href="/auth/resetpassword">Forgot password?</a>
-            </div>
-          </form>
+
+              <div className="forgot-password">
+                <a href="/auth/resetpassword">Forgot password?</a>
+              </div>
+            </form>
+          </div>
         </div>
       </motion.div>
 
@@ -93,9 +106,7 @@ export default function LoginPage() {
         variants={cardAnimation}
         className="back-login-card"
       >
-        <span className="signup-text">
-          Don't have an account?
-        </span>
+        <span className="signup-text">Don't have an account?</span>
         <a href="/auth/signup" className="signup-link">
           Sign up
         </a>

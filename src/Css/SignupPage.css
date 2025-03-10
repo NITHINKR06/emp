@@ -1,194 +1,246 @@
-    /* Global box-sizing fix */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+/* Container: No explicit background color */
+.signup-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-    /* Define custom properties for colors and shadows */
-    :root {
-      --color-bg: #f9fafb;
-      --color-white: #ffffff;
-      --color-gray-300: #d1d5db;
-      --color-gray-400: #60a5fa;
-      --color-gray-500: #6b7280;
-      --color-gray-700: #4a5568;
-      --color-gray-900: #1a202c;
-      --color-blue-600: #2563eb;
-      --color-blue-700: #1d4ed8;
-      --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
+/* Signup card with two-column layout */
+.signup-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+}
 
-    /* Global styles */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      background-color: var(--color-bg);
-    }
+/* Left side: Image */
+.card-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    /* Container */
-    .signup-container {
-      min-height: 100vh;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    @media (min-width: 1024px) {
-      .signup-container {
-        padding: 3rem;
-      }
-    }
+/* Right side: Form content */
+.card-right {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    /* Signup Card */
-    .signup-card {
-      width: 100%;
-      max-width: 28rem;
-      background-color: var(--color-white);
-      box-shadow: var(--card-shadow);
-      border-radius: 0.75rem;
-      border: 1px solid #e5e7eb;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      transition: transform 0.2s ease;
-    }
+/* Logo section */
+.logo-section {
+  margin-bottom: 20px;
+}
 
-    .signup-card:hover {
-      transform: translateY(-3px);
-    }
+.logo-image {
+  width: 80px;
+  height: auto;
+  border-radius: 50%;
+  border: 2px solid #F97316;
+}
 
-    @media (min-width: 640px) {
-      .signup-card {
-        padding: 2rem;
-      }
-    }
+/* Title styling */
+.signup-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
 
-    @media (min-width: 1024px) {
-      .signup-card {
-        padding: 2.5rem;
-      }
-    }
+/* Error message */
+.error-message {
+  color: #d32f2f;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
 
-    /* Logo Section */
-    .logo-section {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
+/* Form styling */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+}
 
-    .logo-image {
-      height: 4rem;
-      width: auto;
-    }
+/* Input group styling */
+.input-group {
+  position: relative;
+  width: 100%;
+}
 
-    /* Signup Title */
-    .signup-title {
-      font-size: 1.875rem;
-      font-weight: bold;
-      color: var(--color-gray-900);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+.input-field {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-    /* Form Styles */
-    .signup-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+.input-field:focus {
+  outline: none;
+  border-color: #F97316;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+}
 
-    /* Input Group */
-    .input-group {
-      position: relative;
-    }
+/* Password toggle */
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #F97316;
+}
 
-    /* Input Icon */
-    .input-icon {
-      position: absolute;
-      top: 50%;
-      left: 0.75rem;
-      transform: translateY(-50%);
-      color: var(--color-gray-500);
-    }
+/* Button styles */
+.next-button,
+.submit-button,
+.back-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-    /* Input Field */
-    .input-field {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      padding-left: 2.5rem;
-      border: 1px solid var(--color-gray-300);
-      border-radius: 0.375rem;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      font-size: 1rem;
-    }
+.next-button {
+  background-color: #F97316;
+  color: #fff;
+}
 
-    .input-field:focus {
-      border-color: var(--color-gray-400);
-      box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5);
-    }
+.next-button:hover {
+  background-color: #EA580C;
+  transform: scale(1.02);
+}
 
-    /* Password Toggle Button */
-    .password-toggle {
-      position: absolute;
-      top: 50%;
-      right: 0.75rem;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: var(--color-gray-500);
-      cursor: pointer;
-      outline: none;
-    }
+.submit-button {
+  background-color: #F97316;
+  color: #fff;
+}
 
-    /* Submit Button */
-    .submit-button {
-      width: 100%;
-      padding: 0.75rem;
-      background-color: var(--color-blue-600);
-      color: var(--color-white);
-      border: none;
-      border-radius: 0.375rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.15s ease, transform 0.15s ease;
-    }
+.submit-button:hover {
+  background-color: #EA580C;
+  transform: scale(1.02);
+}
 
-    .submit-button:hover {
-      background-color: var(--color-blue-700);
-      transform: translateY(-2px);
-    }
+.back-button {
+  background: transparent;
+  color: #F97316;
+  border: 2px solid #F97316;
+}
 
-    /* Bottom Card */
-    .bottom-card {
-      width: 100%;
-      max-width: 28rem;
-      background-color: var(--color-white);
-      box-shadow: var(--card-shadow);
-      border-radius: 0.75rem;
-      border: 1px solid #e5e7eb;
-      padding: 1rem;
-      text-align: center;
-    }
+.back-button:hover {
+  background-color: #F97316;
+  color: #fff;
+  transform: scale(1.02);
+}
 
-    .bottom-text {
-      font-size: 1rem;
-      color: var(--color-gray-700);
-      margin: 0;
-    }
+/* Button group */
+.button-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
 
-    .bottom-link {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-blue-600);
-      text-decoration: none;
-      transition: text-decoration 0.15s ease;
-    }
+/* Password strength meter */
+.strength-meter {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 5px;
+}
 
-    .bottom-link:hover {
-      text-decoration: underline;
-    }
+.strength-bar {
+  height: 100%;
+  background-color: #F97316;
+  transition: width 0.3s ease;
+}
+
+.strength-label {
+  font-size: 0.95rem;
+  margin-top: 5px;
+  color: #666;
+}
+
+/* Bottom card styling */
+.bottom-card {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.bottom-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+.bottom-link {
+  color: #F97316;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.bottom-link:hover {
+  color: #EA580C;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .signup-card {
+    flex-direction: column;
+    max-width: 420px;
+  }
+  .card-left {
+    display: none;
+  }
+  .card-right {
+    padding: 30px 20px;
+  }
+  .signup-title {
+    font-size: 1.8rem;
+  }
+}
+
+.back-login-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 15px 20px 15px 20px; */
+  margin-top: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  transition: background 0.3s ease;
+}
+
+.back-login-card:hover {
+  background: #f9f9f9;
+}

@@ -10,41 +10,56 @@
   padding: 20px;
 }
 
-/* Login card styling with hover effect */
+/* Login card styling */
 .login-card {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  width: 360px;
-  padding: 40px;
+  width: 600px;
   margin-bottom: 20px;
   transition: transform 0.3s ease;
+  overflow: hidden;
 }
 
 .login-card:hover {
   transform: translateY(-5px);
 }
 
-/* Inner container for login card */
 .login-card-inner {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Left image section styling */
+.login-card-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+}
+
+.login-card-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Right content section styling */
+.login-card-content {
+  flex: 1;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Logo section styling */
+/* Logo section */
 .logo-section {
   margin-bottom: 20px;
 }
 
-.logo-image {
-  width: 80px;
-  height: auto;
-  border-radius: 50%;
-  border: 2px solid #ff7b00;
-}
-
-/* Login title styling */
+/* Login title */
 .login-title {
   font-size: 28px;
   margin-bottom: 25px;
@@ -57,51 +72,48 @@
   width: 100%;
 }
 
-/* Input group styling */
+/* INPUT GROUP: flex container for icon, input, and toggle button */
 .input-group {
-  position: relative;
+  display: flex;
+  align-items: center;       /* vertically center all items */
   margin-bottom: 20px;
-}
-
-/* Icon styling inside input fields */
-.input-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  /* transform: translateY(-50%); */
-  color: #ff7b00;
-  font-size: 18px;
-  pointer-events: none;
-}
-
-/* Adjust input field padding to accommodate the icon */
-.with-icon {
-  padding-left: 45px;
-}
-
-/* Input field styling with focus effect */
-.input-field {
-  width: 100%;
-  padding: 12px 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 16px;
-  box-shadow: inset 10px;
+  background: #fff;
+  height: 50px;             /* fixed height for consistent alignment */
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.input-field:focus {
+/* HIGHLIGHT ON FOCUS: entire group highlights if any child is focused */
+.input-group:focus-within {
   border-color: #ff7b00;
   box-shadow: 0 0 8px rgba(255, 145, 0, 0.2);
-  outline: none;
 }
 
-/* Password toggle button styling */
+/* ICON: same vertical space as text, left margin for spacing */
+.input-icon {
+  margin-left: 15px;
+  margin-right: 10px;
+  color: #ff7b00;
+  font-size: 18px;          /* adjust as desired */
+  line-height: 1;           /* helps center icon with text */
+}
+
+/* INPUT FIELD: fills remaining space, remove default borders, center text */
+.input-field {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.2;         /* tweak line-height to match icon’s height */
+  border: none;
+  outline: none;
+  background: transparent;
+  height: 100%;             /* matches the parent's 50px */
+  padding-right: 8px;       /* spacing from the toggle button */
+}
+
+/* TOGGLE BUTTON: right side, same vertical alignment as icon & input */
 .password-toggle {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
+  margin-right: 15px;
   background: none;
   border: none;
   font-size: 14px;
@@ -111,10 +123,10 @@
 }
 
 .password-toggle:hover {
-  color: #ff7b00;
+  color: #e86900;
 }
 
-/* Submit button styling with gradient background */
+/* Submit button styling */
 .submit-button {
   width: 100%;
   padding: 12px;
@@ -133,7 +145,7 @@
   background: linear-gradient(90deg, #f8a557, #ff7b00);
 }
 
-/* Forgot password link styling */
+/* Forgot password link */
 .forgot-password {
   margin-top: 15px;
   text-align: center;
@@ -147,10 +159,10 @@
 }
 
 .forgot-password a:hover {
-  color: #ff7b00;
+  color: #e86900;
 }
 
-/* Signup card styling */
+/* Sign-up card */
 .back-login-card {
   display: flex;
   align-items: center;
@@ -159,12 +171,19 @@
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  width: 360px;
+  width: 600px;
   transition: background 0.3s ease;
 }
 
 .back-login-card:hover {
   background: #f9f9f9;
+}
+
+.card-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .signup-text {
@@ -182,14 +201,22 @@
 }
 
 .signup-link:hover {
-  color: #ff7b00;
+  color: #e86900;
 }
 
 /* Responsive adjustments */
-@media (max-width: 400px) {
+@media (max-width: 768px) {
   .login-card,
   .back-login-card {
     width: 90%;
-    padding: 20px;
+  }
+  
+  .login-card-inner {
+    flex-direction: column;
+  }
+  
+  .login-card-image,
+  .login-card-content {
+    width: 100%;
   }
 }
