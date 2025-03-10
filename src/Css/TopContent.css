@@ -1,105 +1,135 @@
 :root {
-    --primary-color: #f17d00;
-    --text-color: #333;
-    --subtext-color: #666;
-    --border-color: #a5a5a5;
-    --hover-primary: #d16600;
-  }
-  
-  /* Main container */
-  .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
-    min-height: 100vh;
-    text-align: center;
-    background: #f8f8f8; /* Light gray background for a clean look */
-  }
-  
-  /* Content section */
-  .content {
-    max-width: 36rem;
-  }
-  
-  /* Title */
-  .title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    color: var(--text-color);
-  }
-  
-  /* Description */
-  .description {
-    font-size: 1.2rem;
-    font-weight: 500;
-    opacity: 0.8;
-    margin-bottom: 2rem;
-    color: var(--subtext-color);
-  }
-  
-  /* Buttons */
-  .button-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-  }
-  
-  .button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    border-radius: 50px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-    border: 1px solid var(--border-color);
-    background: transparent;
-    color: var(--text-color);
-  }
-  
-  .button:hover {
-    background: var(--primary-color);
-    color: white;
-    transform: translateY(-2px);
-  }
-  
-  .button.outline {
-    background: transparent;
-  }
-  
-  .button.outline:hover {
-    background: #e0e0e0;
-    color: var(--text-color);
-  }
-  
-  /* Image wrapper */
+  --primary-color: #f17d00; /* Orange */
+  --text-color: #333;
+  --subtext-color: #666;
+  --border-color: #a5a5a5;
+  --hover-primary: #d16600;
+}
+
+/* Main container */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  min-height: 100vh;
+  text-align: center;
+  background: #f8f8f8;
+}
+
+/* Content section */
+.content {
+  max-width: 37rem;
+}
+
+/* Title */
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+/* Description */
+.description {
+  font-size: 1.2rem;
+  font-weight: 500;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  color: var(--subtext-color);
+}
+
+/* Buttons */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+}
+
+.button:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.button.outline {
+  background: transparent;
+}
+
+.button.outline:hover {
+  background: #e0e0e0;
+  color: var(--text-color);
+}
+
+/* Image wrapper */
+.image-wrapper {
+  max-width: 700px;
+  width: 150%;
+  height: 150%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+/* Landing image with an orange tinted shadow */
+.landing-image {
+  width: 400%;
+  height: 350%;
+  max-width: 700px;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.171);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.landing-image:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
   .image-wrapper {
-    max-width: 28rem;
+    margin-top: 30px;
+    padding: 1rem;
   }
   
-  .landing-image {
-    width: 100%;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  .title {
+    font-size: 2rem;
   }
   
-  /* Responsive Design */
-  @media (min-width: 768px) {
-    .main {
-      flex-direction: row;
-      text-align: left;
-    }
-  
-    .content {
-      text-align: left;
-    }
-  
-    .button-container {
-      justify-content: flex-start;
-    }
+  .description {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    flex-direction: row;
+    text-align: left;
   }
   
+  .content {
+    text-align: left;
+  }
+  
+  .button-container {
+    justify-content: flex-start;
+  }
+}

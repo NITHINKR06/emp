@@ -18,7 +18,6 @@ const mobileLinks = [
   { path: "/about", label: "About" },
   { path: "/contacts", label: "Contact" },
   { path: "/faq", label: "FAQ" },
-  { path: "/support", label: "Support" },
   { path: "/user/booking", label: "Bookings" },
   { path: "/user/booking/status", label: "Booking Status" },
 ];
@@ -35,7 +34,7 @@ function Navbar() {
         <div className="navbar-inner">
           {/* Logo */}
           <Link to="/" className="navbar-logo">
-            Employment
+          KaarmiQ
           </Link>
 
           {/* Desktop Navigation */}

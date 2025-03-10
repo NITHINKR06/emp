@@ -14,6 +14,7 @@ import LoginPage from './auth/login/page';
 import ResetPassword from './auth/resetpassword/page';
 import SignupPage from './auth/signup/page';
 import URoute from './Modules/User/router/uroute';
+import FaqPage from './Components/FAQ/FAQPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Routes>
               <Route exact path='/' element={<Home/>}/>
               <Route exact path='/about' element={<AboutUs/>}/>
+              <Route exact path='/faq' element={<FaqPage/>}/>
               <Route exact path='/contacts' element={<ContactForm/>}/>
               <Route exact path='/*' element={<Error/>}/>
               <Route exact path='/auth/login' element={<LoginPage/>}/>

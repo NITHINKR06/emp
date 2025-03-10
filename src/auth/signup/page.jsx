@@ -95,7 +95,20 @@ export default function SignupPage() {
         <div className="card-right">
           <div className="logo-section">
             {/* Replace with your actual logo image source */}
-            <img src="logo-placeholder.png" alt="Logo" className="logo-image" />
+            <motion.h1
+        animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+        transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
+        style={{
+          fontSize: '4rem',
+          fontFamily: 'Arial, sans-serif',
+          background: 'linear-gradient(270deg, orange, black, white)',
+          backgroundSize: '200% 200%',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent'
+        }}
+      >
+        KaarmiQ
+      </motion.h1>
           </div>
           <h2 className="signup-title">Sign Up</h2>
           {error && <div className="error-message">{error}</div>}

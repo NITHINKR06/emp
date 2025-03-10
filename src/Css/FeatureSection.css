@@ -3,13 +3,13 @@
 ********************************/
 .feature-section {
   display: flex;
-  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
   padding: 60px 20px;
-  gap: 40px; /* Space between columns on smaller screens */
+  gap: 40px;
 }
 
 /********************************
@@ -19,21 +19,18 @@
   position: relative;
   flex: 1;
   min-width: 300px;
-  min-height: 500px;
+  height: 500px;
   border-radius: 20px;
   overflow: hidden;
-
-  /* Animated gradient background */
-  background: linear-gradient(-45deg, #ff5e62, #ff9966, #ffc371, #f17d00);
+  background: linear-gradient(-45deg, #ffa15e, #ff9966, #ffc371, #f17d00);
   background-size: 400% 400%;
   animation: gradientAnimation 15s ease infinite;
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Keyframes for the animated gradient */
+/* Animated gradient keyframes */
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -46,9 +43,8 @@
   }
 }
 
-/* A subtle circle overlay for extra flair */
+/* Circle overlay for decorative flair */
 .circle-overlay {
-  content: "";
   position: absolute;
   width: 600px;
   height: 600px;
@@ -59,16 +55,22 @@
   left: -200px;
 }
 
-/* Phone container ensures image is on top of overlay */
+/* Phone container ensures image is on top of overlay and centers the image */
 .phone-container {
   position: relative;
-  z-index: 1; /* ensures the phone image is above the circle overlay */
+  z-index: 1;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Phone image styling */
+/* Phone image styling to fully fit the container */
 .phone-image {
-  max-width: 70%;
-  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
   display: block;
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
   transition: transform 0.3s ease;
@@ -91,7 +93,7 @@
   font-size: 1.8rem;
   margin-bottom: 30px;
   color: #333;
-  text-align: left; /* or center if you prefer */
+  text-align: left;
 }
 
 /********************************
@@ -113,7 +115,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Icon container with a gradient background */
+/* Feature icon with gradient background */
 .feature-icon {
   width: 50px;
   height: 50px;
@@ -122,13 +124,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;      /* icon color */
+  color: #fff;
   font-size: 1.5rem;
   margin-right: 15px;
-  flex-shrink: 0;   /* prevents icon from shrinking if text is long */
+  flex-shrink: 0;
 }
 
-/* Heading for each feature */
+/* Feature content heading */
 .feature-content h3 {
   margin: 0 0 8px;
   font-size: 1.2rem;
@@ -136,7 +138,7 @@
   color: #333;
 }
 
-/* Paragraph text for each feature */
+/* Feature content paragraph */
 .feature-content p {
   margin: 0;
   font-size: 0.95rem;
@@ -144,7 +146,7 @@
   color: #666;
 }
 
-/* Links inside feature paragraphs */
+/* Links inside feature content */
 .feature-content a {
   color: #f17d00;
   text-decoration: none;
@@ -153,4 +155,34 @@
 
 .feature-content a:hover {
   text-decoration: underline;
+}
+
+/********************************
+  RESPONSIVE DESIGN
+********************************/
+@media (max-width: 768px) {
+  .feature-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .feature-section-left,
+  .feature-section-right {
+    max-width: 100%;
+  }
+  
+  .section-title {
+    text-align: center;
+  }
+  
+  .feature-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .feature-icon {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }

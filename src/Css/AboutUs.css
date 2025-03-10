@@ -75,8 +75,23 @@
 
 .image-wrapper {
   position: relative;
-  width: 16rem;  /* Tailwind w-64 */
-  height: 16rem; /* Tailwind h-64 */
+  width: 6rem;  /* Tailwind w-64 */
+  height: 6rem; /* Tailwind h-64 */
+}
+
+.image-ab{
+  width: 500px;
+  height: 500px;
+}
+
+.image-v{
+  width: 120px;
+  height: 70px;
+}
+
+.image-m{
+  width: 100px;
+  height: 80px;
 }
 
 .image-bg {

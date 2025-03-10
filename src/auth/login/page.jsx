@@ -52,7 +52,7 @@ export default function LoginPage() {
           <div className="login-card-content">
             {/* Logo Section */}
             <div className="logo-section">
-              <h1>Employment</h1>
+              <h1>KaarmiQ</h1>
             </div>
             <h2 className="login-title">Login</h2>
 

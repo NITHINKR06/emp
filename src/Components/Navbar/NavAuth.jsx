@@ -11,7 +11,7 @@ const AuthNavbar = () => {
       <div className="auth-navbar-inner">
         {/* Logo */}
         <Link to="/" className="auth-navbar-logo">
-        Employment
+        KaarmiQ
         </Link>
 
         {/* Navigation Links */}

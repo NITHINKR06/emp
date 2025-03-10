@@ -26,10 +26,10 @@ const itemVariants = {
   },
 };
 
-export default function ContactForm() {
+export default function EmploymentContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Implement form submission logic here
+    // Implement form submission logic here (e.g., send data to an HR endpoint)
   };
 
   return (
@@ -41,32 +41,38 @@ export default function ContactForm() {
       className="contact-container"
     >
       <div className="contact-card">
-        {/* Contact Details Section */}
+        {/* Employment Contact Details Section */}
         <motion.div variants={itemVariants} className="contact-details">
-          <h2 className="contact-title">Get in Touch</h2>
+          <h2 className="contact-title">Join Our Team</h2>
           <p className="contact-subtitle">
-            We would love to hear from you. Please fill out the form and our team will reach out shortly.
+            Interested in a career with us? Please fill out the form below and our HR team will reach out with potential opportunities.
           </p>
           <div className="contact-info-list">
             <motion.div variants={itemVariants} className="contact-info-item">
-              <span className="info-label"><FaPhone className="contact-icon" /> Phone</span>
+              <span className="info-label">
+                <FaPhone className="contact-icon" /> Phone
+              </span>
               <span className="info-text">+0123 4567 8910</span>
             </motion.div>
             <motion.div variants={itemVariants} className="contact-info-item">
-              <span className="info-label"><FaEnvelope className="contact-icon" /> Email</span>
-              <span className="info-text">hello@flowbase.com</span>
+              <span className="info-label">
+                <FaEnvelope className="contact-icon" /> Email
+              </span>
+              <span className="info-text">hr@company.com</span>
             </motion.div>
             <motion.div variants={itemVariants} className="contact-info-item">
-              <span className="info-label"><FaMapMarkerAlt className="contact-icon" /> Address</span>
-              <span className="info-text">102 Street 2714 Don</span>
+              <span className="info-label">
+                <FaMapMarkerAlt className="contact-icon" /> Office
+              </span>
+              <span className="info-text">102 Business Park, Suite 2714</span>
             </motion.div>
           </div>
         </motion.div>
-        {/* Contact Form Section */}
+        {/* Employment Contact Form Section */}
         <motion.div variants={itemVariants} className="contact-form">
-          <div onSubmit={handleSubmit} className="contact-form-fields">
+          <form onSubmit={handleSubmit} className="contact-form-fields">
             <motion.div variants={itemVariants} className="form-field">
-              <label className="form-label">Name</label>
+              <label className="form-label">Full Name</label>
               <input type="text" className="form-input" required />
             </motion.div>
 
@@ -76,7 +82,7 @@ export default function ContactForm() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="form-field">
-              <label className="form-label">Message</label>
+              <label className="form-label">Cover Letter</label>
               <textarea rows="4" className="form-input" required></textarea>
             </motion.div>
 
@@ -85,11 +91,10 @@ export default function ContactForm() {
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
               className="form-button"
-              onClick={handleSubmit}
             >
-              Send Message
+              Apply Now
             </motion.button>
-          </div>
+          </form>
         </motion.div>
       </div>
     </motion.div>

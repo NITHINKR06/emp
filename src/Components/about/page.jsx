@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import '../../Css/AboutUs.css'; // Import the external CSS file
+import '../../Css/AboutUs.css';
 
-import img from '../../img/image.png';
+import img1 from '../../img/vision.png';
+import img2 from '../../img/about.png';
+import img3 from '../../img/mission.png';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -37,35 +39,27 @@ export default function AboutUs() {
         variants={shouldReduceMotion ? {} : itemVariants}
       >
         <motion.div className="hero-text" variants={shouldReduceMotion ? {} : itemVariants}>
-          <h1 className="hero-title">Our Journey</h1>
+          <h1 className="hero-title">Join Our Team</h1>
           <p className="hero-subtitle">
-            From humble beginnings to a global impact, our story is built on passion, innovation, and a commitment to excellence.
+            Discover exciting career opportunities and grow with a company committed to innovation, collaboration, and professional development.
           </p>
         </motion.div>
         <motion.div className="hero-image-container" variants={shouldReduceMotion ? {} : itemVariants}>
           <div className="image-wrapper">
             {/* Background layer */}
-            <motion.div
-              className="image-bg"
-              whileHover={{ scale: 1.05 }}
-            />
+            <motion.div className="image-bg" whileHover={{ scale: 1.05 }} />
             {/* Foreground layer with slight offset */}
-            <motion.div
-              className="image-foreground"
-              whileHover={{ scale: 1.05, rotate: 3 }}
-            />
+            {/* <motion.div className="image-foreground" whileHover={{ scale: 1.05, rotate: 3 }} /> */}
             <img
-              src={img}
-              alt="Our Journey"
-              layout="fill"
-              objectFit="cover"
-              className="image"
+              src={img2}
+              alt="Career Opportunities"
+              className="image-ab"
             />
           </div>
         </motion.div>
       </motion.section>
 
-      {/* Mission and Vision Section */}
+      {/* Culture and Career Growth Section */}
       <motion.section
         className="mission-section"
         variants={shouldReduceMotion ? {} : containerVariants}
@@ -77,16 +71,14 @@ export default function AboutUs() {
         >
           <div className="icon-wrapper">
             <img
-              src={img}
-              alt="Mission"
-              layout="fill"
-              objectFit="contain"
-              className="image"
+              src={img1}
+              alt="Our Culture"
+              className="image-v"
             />
           </div>
-          <h2 className="card-title">Our Mission</h2>
+          <h2 className="card-title">Our Culture</h2>
           <p className="card-text">
-            To innovate and inspire, creating solutions that empower communities and drive meaningful change.
+            We foster a dynamic, inclusive work environment that values creativity, collaboration, and continuous learning. Your growth is our priority.
           </p>
         </motion.div>
         <motion.div
@@ -96,16 +88,14 @@ export default function AboutUs() {
         >
           <div className="icon-wrapper">
             <img
-              src={img}
-              alt="Vision"
-              layout="fill"
-              objectFit="contain"
-              className="image"
+              src={img3}
+              alt="Career Growth"
+              className="image-m"
             />
           </div>
-          <h2 className="card-title">Our Vision</h2>
+          <h2 className="card-title">Career Growth</h2>
           <p className="card-text">
-            To lead with creativity and integrity, setting new standards for excellence in our industry.
+            Join us to advance your career with opportunities for professional development, mentorship, and impactful projects that shape the future.
           </p>
         </motion.div>
       </motion.section>
@@ -116,7 +106,7 @@ export default function AboutUs() {
         variants={shouldReduceMotion ? {} : itemVariants}
       >
         <p>
-          Join us as we explore new horizons and redefine the future.
+          Embark on a rewarding career journey with us and shape your future.
         </p>
       </motion.section>
     </motion.div>
