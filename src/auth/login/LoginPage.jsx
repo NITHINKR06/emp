@@ -70,7 +70,7 @@ export default function LoginPage() {
         <div className="login-card-inner">
           {/* Left Image Section */}
           <div className="card-left">
-            <img src={randomImage} alt="Signup Image" className="card-image" />
+            {/* <img src={randomImage} alt="Signup Image" className="card-image" /> */}
           </div>
           {/* Right Content Section */}
           <div className="login-card-content">
