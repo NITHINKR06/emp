@@ -7,7 +7,7 @@ import TopContent from '../Components/Home/Topcontent/TopContent'
 
 export default function Home() {
   return (
-    <div style={{paddingTop:'50px' }}>
+    <div>
       <TopContent/>
       <Services/>
       <FeatureSection/>

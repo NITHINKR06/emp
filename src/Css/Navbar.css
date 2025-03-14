@@ -16,7 +16,7 @@
   width: 90%;
   max-width: 1152px; /* approximate Tailwind's max-w-6xl (72rem) */
   background-color: #ffffff;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
   border-radius: 9999px;
   padding: 0.75rem; /* p-3 */
   z-index: 50;
@@ -53,6 +53,22 @@
     display: none;
   }
 }
+
+.logout-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.logout-button:hover {
+  background-color: #cc0000;
+}
+
 
 /* Navigation Link (Common Style) */
 .nav-link {
@@ -146,4 +162,101 @@
 
 .mobile-login-button:hover {
   background-color: var(--hover-primary);
+}
+
+/* Modal Overlay */
+.logout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Dark background with transparency */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px); /* Soft blur effect */
+  z-index: 1000;
+}
+
+/* Modal Box */
+.logout-modal {
+  background: rgba(255, 255, 255, 0.2); /* Transparent white */
+  backdrop-filter: blur(12px); /* Frosted glass effect */
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  width: 320px;
+  animation: fadeIn 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Title */
+.logout-modal h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Text */
+.logout-modal p {
+  font-size: 16px;
+  color: #f1f1f1;
+  margin-bottom: 20px;
+}
+
+/* Button Wrapper */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Confirm Button */
+.confirm-logout {
+  background: #e74d3cf6;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1;
+  transition: 0.3s ease;
+}
+
+.confirm-logout:hover {
+  background: #c03a2b9b;
+  transform: scale(1.05);
+}
+
+/* Cancel Button */
+.cancel-logout {
+  background: #db7734;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1;
+  transition: 0.3s ease;
+}
+
+.cancel-logout:hover {
+  background: #b92929;
+  transform: scale(1.05);
+}
+
+/* Smooth Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

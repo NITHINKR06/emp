@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "../../Css/ResetPassword.css"; // Import the external CSS
+import { useNavigate } from "react-router-dom";
 
 const cardAnimation = {
   hidden: { opacity: 0, y: 20 },
@@ -20,6 +21,11 @@ function ResetPassword() {
   const [loadingOTP, setLoadingOTP] = useState(false);
   const [timerCount, setTimerCount] = useState(60);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const navigate = useNavigate();
+
+  const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
 
   // Countdown timer for resend OTP (active during step 2)
   useEffect(() => {
@@ -34,6 +40,7 @@ function ResetPassword() {
     };
   }, [step, timerCount]);
 
+  // Function to send OTP
   const handleSendOTP = async () => {
     if (!email) {
       setError("Please enter your email address.");
@@ -41,40 +48,77 @@ function ResetPassword() {
     }
     setError("");
     setLoadingOTP(true);
-    // Simulate API call to send OTP
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch(`${BASE_URL}/api/auth/sendOTP`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data.message || "Error sending OTP");
+      } else {
+        setStep(2);
+        setTimerCount(60);
+      }
+    } catch (err) {
+      setError("Error sending OTP");
+    }
     setLoadingOTP(false);
-    setStep(2);
-    setTimerCount(60);
-    console.log("OTP sent to email:", email);
   };
 
+  // Function to resend OTP
   const handleResendOTP = async () => {
     setLoadingOTP(true);
-    // Simulate API call to resend OTP
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch(`${BASE_URL}/api/auth/sendOTP`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data.message || "Error resending OTP");
+      } else {
+        setTimerCount(60);
+      }
+    } catch (err) {
+      setError("Error resending OTP");
+    }
     setLoadingOTP(false);
-    setTimerCount(60);
-    console.log("OTP re-sent to email:", email);
   };
 
-  const handleSubmit = (e) => {
+  // Function to reset password
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
     setError("");
-    // Simulate password reset API call here
-    console.log(
-      "Reset password for email:",
-      email,
-      "OTP:",
-      otp,
-      "New Password:",
-      newPassword
-    );
-    // Optionally, you can add a success state or redirect here
+    try {
+      const response = await fetch(`${BASE_URL}/api/auth/resetPasword`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, otp, newPassword }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data.message || "Error resetting password");
+      } else {
+        setSuccess("Password reset successfully!");
+        navigate('/auth/login')
+        // Optionally redirect to the login page or clear the form fields
+      }
+    } catch (err) {
+      setError("Error resetting password");
+    }
   };
 
   return (
@@ -128,6 +172,7 @@ function ResetPassword() {
               An OTP has been sent to <strong>{email}</strong>
             </p>
             {error && <div className="error-message">{error}</div>}
+            {success && <div className="success-message">{success}</div>}
             <form onSubmit={handleSubmit} className="reset-form">
               <div className="input-group">
                 <input

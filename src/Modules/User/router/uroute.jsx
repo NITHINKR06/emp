@@ -16,7 +16,6 @@ export default function URoute() {
           <Route path='/booking/status' element={<BookingStatu/>} />
           <Route path='/booking/status/:id' element={<Payment/>} />
           <Route path='/booking/:id' element={<SameLayout/>} />
-          {/* <Route path='/StudentRegister' element={<StudentRegister/>} /> */}
       </Routes>
     </div>
   )

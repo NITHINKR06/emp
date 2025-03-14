@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"; // import js-cookie
 import "../../Css/LoginPage.css";
 
 const cardAnimation = {
@@ -15,22 +18,45 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Logging in with:", email, password);
-    // Implement login logic here
+    try {
+      // Make a POST request to the login endpoint
+      const res = await axios.post(`${BASE_URL}/api/auth/login`, { email, password });
+      // console.log("Login successful. Token:", res.data.token);
+      
+      // Store token in a cookie with an expiration of 7 days, secure flag, and sameSite policy
+      // Cookies.set("token", res.data.token, { expires: 7, secure: true, sameSite: "Strict" });
+
+      const cookieOptions = {
+        expires: 7,
+        sameSite: "Strict",
+        ...(process.env.NODE_ENV === "production" && { secure: true }),
+      };
+      
+      Cookies.set("token", res.data.token, cookieOptions);      
+
+      navigate("/");
+    } catch (err) {
+      console.log(
+        "Error logging in:",
+        err.response ? err.response.data.msg : err.message
+      );
+      // Optionally, display an error message to the user here
+    }
   };
 
   const images = [
-    "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg",
-    "https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg",
-    "https://images.pexels.com/photos/3767377/pexels-photo-3767377.jpeg",
-    "https://images.pexels.com/photos/18105/pexels-photo.jpg"
+    "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg"
+    // "https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg",
+    // "https://images.pexels.com/photos/3767377/pexels-photo-3767377.jpeg",
+    // "https://images.pexels.com/photos/18105/pexels-photo.jpg",
   ];
-  
   const randomImage = images[Math.floor(Math.random() * images.length)];
-  
 
   return (
     <div className="login-container">
@@ -44,10 +70,8 @@ export default function LoginPage() {
         <div className="login-card-inner">
           {/* Left Image Section */}
           <div className="card-left">
-        <img src={randomImage} alt="Signup Image" className="card-image" />
-
-        </div>
-
+            <img src={randomImage} alt="Signup Image" className="card-image" />
+          </div>
           {/* Right Content Section */}
           <div className="login-card-content">
             {/* Logo Section */}
@@ -55,9 +79,7 @@ export default function LoginPage() {
               <h1>KaarmiQ</h1>
             </div>
             <h2 className="login-title">Login</h2>
-
             <form onSubmit={handleLogin} className="login-form">
-              {/* Email Field */}
               <div className="input-group">
                 <input
                   type="email"
@@ -68,7 +90,6 @@ export default function LoginPage() {
                   required
                 />
               </div>
-
               <div className="input-group">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -86,11 +107,9 @@ export default function LoginPage() {
                   {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
-
               <button type="submit" className="submit-button">
                 Log in
               </button>
-
               <div className="forgot-password">
                 <a href="/auth/resetpassword">Forgot password?</a>
               </div>
@@ -98,7 +117,6 @@ export default function LoginPage() {
           </div>
         </div>
       </motion.div>
-
       {/* Sign up Card */}
       <motion.div
         initial="hidden"

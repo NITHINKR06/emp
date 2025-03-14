@@ -118,7 +118,6 @@
 
 /* Button styles */
 .next-button,
-.submit-button,
 .back-button {
   width: 100%;
   padding: 12px;
@@ -245,4 +244,73 @@
 
 .back-login-card:hover {
   background: #f9f9f9;
+}
+
+/* Container for the role selector */
+.input-box.role-selector {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label styling */
+.input-box.role-selector label {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Role options container with relative positioning */
+.role-options {
+  position: relative;
+  display: flex;
+  border: 2px solid #F97316;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Base styling for role option buttons */
+.role-option {
+  flex: 1;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #F97316;
+  z-index: 1;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect on buttons */
+.role-option:hover {
+  color: #EA580C;
+}
+
+/* Active state styling for role options */
+.role-option.active {
+  color: #fff;
+}
+
+/* Animated indicator highlighting the selected role */
+.role-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #F97316;
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .role-option {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
 }
