@@ -12,7 +12,7 @@
   
   .advanced-profile-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.016);
   }
   
   /* Profile Header */
@@ -67,7 +67,7 @@
   }
   
   .info-item:hover {
-    background: #f1f1f1;
+    background: #e1e1e186;
   }
   
   .label {
@@ -105,6 +105,15 @@
   .info-item.full {
     grid-column: span 2;
   }
+
+  .review-item{
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border-color: #e59400;
+  }
+
   
   /* Settings Button */
   .settings-button {

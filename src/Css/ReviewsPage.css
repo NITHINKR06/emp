@@ -1,0 +1,232 @@
+/* ReviewsPage.css */
+
+.reviews-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reviews-form h3,
+  .reviews-display h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .reviews-form {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .reviews-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .rating-stars {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .rating-stars input {
+    display: none;
+  }
+  
+  .rating-stars label {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .input-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-container input,
+  .input-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s;
+  }
+  
+  .input-container input:focus,
+  .input-container textarea:focus {
+    border-color: #ff9800;
+    outline: none;
+  }
+  
+  .input-container label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 0.9rem;
+    color: #777;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .input-container input:focus + label,
+  .input-container textarea:focus + label,
+  .input-container input:not(:placeholder-shown) + label,
+  .input-container textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 5px;
+    font-size: 0.8rem;
+    color: #ff9800;
+  }
+  
+  .btn-submit {
+    background: #ff9800;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .btn-submit:hover {
+    background: #e68900;
+  }
+  
+  .reviews-display {
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .review-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .review-rating span {
+    font-size: 1.3rem;
+  }
+  
+  .review-text {
+    font-size: 1rem;
+    color: #000000;
+  }
+
+  .review-message {
+    font-size: 1rem;
+    color: #000000;
+  }
+  
+  .view-more-btn {
+    display: block;
+    margin: 1rem auto;
+    background: #ff9800;
+    color: rgb(255, 255, 255);
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .view-more-btn:hover {
+    background: #e68900;
+  }
+  
+  /* Modal Styles */
+  .logout-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .logout-modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .logout-modal h2 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .modal-reviews {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 1rem 0;
+  }
+  
+  .modal-review {
+    padding: 1rem;
+    border-bottom: 1px solid #8e8d8d;
+  }
+  
+  .modal-review:last-child {
+    border-bottom: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .reviews-container {
+      padding: 1rem;
+    }
+  
+    .rating-stars label {
+      font-size: 1.8rem;
+    }
+  
+    .btn-submit,
+    .view-more-btn {
+      font-size: 0.9rem;
+      padding: 8px 12px;
+    }
+  }
+  

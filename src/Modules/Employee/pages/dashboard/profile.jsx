@@ -18,7 +18,10 @@ import "../../../../Css/EmployeeProfile.css";
 function Profile({ employee }) {
 
   // Extract only the file name from the full path
-  const fileName = employee.profilePhotoUrl.split('\\').pop();
+  const fileName = employee.profilePhotoUrl
+  ? employee.profilePhotoUrl.split('\\').pop()
+  : '';
+
   const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
   
   // Container animation using spring physics and staggered children
@@ -115,20 +118,28 @@ function Profile({ employee }) {
             </span>
             <span className="value">{employee.about || 'N/A'}</span>
           </div>
-          <div className="info-item">
-            <span className="label">
-              <FaStar /> Rating:
-            </span>
-            <span className="value stars">
-              {renderStars(employee.rating)}
-              <span className="rating-number"> {employee.rating} / 5</span>
-            </span>
-          </div>
           <div className="info-item full">
             <span className="label">
-              <FaCommentDots /> Review:
+              <FaStar /> Ratings &amp; Reviews:
             </span>
-            <span className="value">{employee.review || 'N/A'}</span>
+            <div className="value">
+              {employee.reviews && employee.reviews.length > 0 ? (
+                employee.reviews.map((review, index) => (
+                  <div key={index} className="review-item">
+                    <div className="rating">
+                      {renderStars(review.rating)}
+                      <span className="rating-number"> {review.rating} / 5</span>
+                    </div>
+                    <p className="review-message">{review.message}</p>
+                    <p className="review-author">
+                      - {review.name} on {new Date(review.date).toLocaleDateString()}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <p>No reviews yet.</p>
+              )}
+            </div>
           </div>
         </div>
       </motion.div>

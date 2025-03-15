@@ -18,7 +18,7 @@
   position: relative;
   padding: 30px 20px;
   text-align: center;
-  background: var(--bg-color);
+  /* background: var(--bg-color); */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
 }

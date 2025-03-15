@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import '../../Css/Search.css'; // Import the separate CSS file
 
-export default function Search() {
-  const [query, setQuery] = useState('');
-  const [focused, setFocused] = useState(false);
+export default function Search({ query, setQuery }) {
 
-  // Animation variants for the form, input, and button
+  // Animation variants
   const formVariants = {
     initial: { opacity: 0, scale: 0.95 },
     animate: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
@@ -26,7 +24,6 @@ export default function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Searching for:', query);
   };
 
   return (
@@ -42,19 +39,14 @@ export default function Search() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search branch name..."
+          placeholder="Search employees..."
           className="better-search-input"
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
           variants={inputVariants}
-          animate={focused ? 'focused' : 'blurred'}
-          aria-label="Search branch name"
+          aria-label="Search employees"
         />
-        {/* Search icon on the left */}
         <div className="better-search-icon">
           <FaSearch />
         </div>
-        {/* Clear button appears when there is text */}
         {query && (
           <button
             type="button"
@@ -76,31 +68,5 @@ export default function Search() {
         </motion.button>
       </motion.form>
     </div>
-  );
-}
-
-export function SBox() {
-  const [focused, setFocused] = useState(false);
-  const [query, setQuery] = useState("");
-
-  return (
-    <motion.div
-      className="better-sbox-container"
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-    >
-      <motion.input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search..."
-        className="better-sbox-input"
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        animate={{ scale: focused ? 1.05 : 1 }}
-        transition={{ duration: 0.2 }}
-      />
-      <FaSearch className="better-sbox-icon" />
-    </motion.div>
   );
 }

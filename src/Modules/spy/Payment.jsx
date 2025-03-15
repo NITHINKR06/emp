@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Links, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import PaymentsModel from '../../../../../auth/payment/PaymentsModel';
 import { data } from '../../../../../data/BookingStauts/data';
@@ -7,33 +7,33 @@ import '../../../../../Css/Payment.css';
 
 export default function Payment() {
   const { id } = useParams(); // Extract the booking ID from the URL
-  const dummyBooking = data.find((booking) => booking._id === id);
+  const booking = data.find((booking) => booking._id === id);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
-  const [bookingDetails, setBookingDetails] = useState(null);
-  const navigate = useNavigate();
   
+  const [bookingDetails, setBookingDetails] = useState([])
 
   const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
-
-  useEffect(() => {
+  
+  useEffect(() => { 
     const fetchBooking = async () => {
       try {
         const response = await fetch(`${BASE_URL}/api/bookings/status/${id}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const bookingData = await response.json();
-        console.log(bookingData, 'booking data');
-        setBookingDetails(bookingData);
+        const data = await response.json();
+        console.log(data, 'booking data');
+        setBookingDetails(data);
       } catch (error) {
         console.log('Error fetching booking:', error);
         setError('Error fetching booking.');
       }
     };
-
+  
     fetchBooking();
-  }, [id, BASE_URL]);
+  }, [id]);
+  
 
   // Animation variants for the page
   const containerVariants = {
@@ -58,16 +58,23 @@ export default function Payment() {
     },
   };
 
-  if (error) {
-    return <div>{error}</div>;
+  if (!booking) {
+    return (
+      <motion.div
+        className="not-found-container"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.h1 className="not-found-title" variants={itemVariants}>
+          Payment Page
+        </motion.h1>
+        <motion.p className="not-found-message" variants={itemVariants}>
+          No booking found for ID: {id}
+        </motion.p>
+      </motion.div>
+    );
   }
-
-  if (!bookingDetails) {
-    return <div>Loading booking data...</div>;
-  }
-
-  // Define the keys you want to hide (sensitive data)
-  const hiddenKeys = ['employeeId', 'userId', '_id', '__v'];
 
   return (
     <div className="payment-page">
@@ -86,13 +93,19 @@ export default function Payment() {
             Booking Details
           </motion.h2>
           <div className="details-grid">
-            {Object.entries(bookingDetails)
-              .filter(([key]) => !hiddenKeys.includes(key))
-              .map(([key, value]) => (
-                <motion.div key={key} className="detail-item" variants={itemVariants}>
-                  <span>{key}:</span> {value?.toString()}
-                </motion.div>
-              ))}
+            <motion.div className="detail-item" variants={itemVariants}>
+              <span>ID:</span> {bookingDetails._id}
+            </motion.div>
+            <motion.div className="detail-item" variants={itemVariants}>
+              <span>Name:</span> {bookingDetails.name}
+            </motion.div>
+            <motion.div className="detail-item" variants={itemVariants}>
+              <span>Experience:</span> {bookingDetails.experience}{' '}
+              {bookingDetails.experience > 1 ? 'years' : 'year'}
+            </motion.div>
+            <motion.div className="detail-item" variants={itemVariants}>
+              <span>Status:</span> {bookingDetails.status}
+            </motion.div>
           </div>
         </motion.div>
 
@@ -104,15 +117,6 @@ export default function Payment() {
             whileHover="hover"
           >
             Proceed to Payment
-          </motion.button>
-          
-          <motion.button
-            className="proceed-button"
-            onClick={() => navigate(`/user/booking/${bookingDetails.employeeId}`)}
-            variants={buttonVariants}
-            whileHover="hover"
-          >
-            View Profile
           </motion.button>
         </motion.div>
       </motion.div>
@@ -146,8 +150,8 @@ export default function Payment() {
         )}
       </AnimatePresence>
 
-      {/* Optional: Display booking statuses */}
-      {/* <motion.div
+      {/* New Section: Displaying Booking Statuses */}
+      <motion.div
         className="booking-status-section"
         initial="hidden"
         animate="visible"
@@ -171,7 +175,7 @@ export default function Payment() {
             </motion.div>
           ))}
         </motion.div>
-      </motion.div> */}
+      </motion.div>
     </div>
   );
 }

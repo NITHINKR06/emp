@@ -76,7 +76,7 @@ export default function SignupPage() {
     <div className="signup-container">
       <motion.div initial="hidden" animate="visible" exit="exit" variants={cardAnimation} className="signup-card">
         <div className="card-left">
-          <image src={randomImage} alt="Signup Image" className="card-image" />
+          <img src={randomImage} alt="Signup Image" className="card-image" />
 
           </div>
           <div className="card-right">
@@ -157,6 +157,7 @@ export default function SignupPage() {
 
                   <div className="button-group">
                     <button type="button" className="submit-button" onClick={() => setStep(1)}>Back</button>
+                    <br />
                     <button type="submit" className="submit-button">SignUp</button>
                   </div>
                 </motion.form>
@@ -165,16 +166,16 @@ export default function SignupPage() {
         </div>
       </motion.div>
       <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={cardAnimation}
-              className="back-login-card"
-            >
-              <span className="signup-text">Already have an account?</span>
-              <a href="/auth/login" className="signup-link">
-                Login
-              </a>
-            </motion.div>
+        initial="hidden"
+        animate="visible"
+        variants={cardAnimation}
+        className="back-login-card"
+      >
+        <span className="signup-text">Already have an account?</span>
+        <a href="/auth/login" className="signup-link">
+          Login
+        </a>
+      </motion.div>
     </div>
   );
 }

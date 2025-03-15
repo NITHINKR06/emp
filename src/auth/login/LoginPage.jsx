@@ -51,10 +51,7 @@ export default function LoginPage() {
   };
 
   const images = [
-    "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg"
-    // "https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg",
-    // "https://images.pexels.com/photos/3767377/pexels-photo-3767377.jpeg",
-    // "https://images.pexels.com/photos/18105/pexels-photo.jpg",
+    ""
   ];
   const randomImage = images[Math.floor(Math.random() * images.length)];
 
@@ -70,14 +67,10 @@ export default function LoginPage() {
         <div className="login-card-inner">
           {/* Left Image Section */}
           <div className="card-left">
-            {/* <img src={randomImage} alt="Signup Image" className="card-image" /> */}
+            <img src={randomImage} alt="Signup Image" className="card-image" />
           </div>
           {/* Right Content Section */}
           <div className="login-card-content">
-            {/* Logo Section */}
-            <div className="logo-section">
-              <h1>KaarmiQ</h1>
-            </div>
             <h2 className="login-title">Login</h2>
             <form onSubmit={handleLogin} className="login-form">
               <div className="input-group">

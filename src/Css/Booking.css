@@ -1,39 +1,37 @@
-/* Booking.css */
-
-/* Reset box sizing for consistency */
+/* Reset box sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Container styling */
+/* Container */
 .booking-container {
+  /* margin-top: 80px; */
   min-height: 100vh;
-  /* margin-top: 40px; */
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  background-color: #f5f7fa;
   padding: 2rem;
+  display: flex;
   justify-content: center;
 }
 
-/* Main content area */
+/* Main content */
 .booking-main {
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-left: 8%;
-  margin-left: 6%;
-  margin-top: 80px;
   max-width: 1200px;
+  width: 100%;
 }
 
 /* Grid layout */
 .booking-grid {
-  /* justify-content: center; */
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1100px;
 }
 
 @media (min-width: 640px) {
@@ -48,7 +46,7 @@
   }
 }
 
-/* Booking card styles */
+/* Booking card */
 .booking-card {
   background: #ffffff;
   border-radius: 12px;
@@ -56,9 +54,9 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
 }
 
 .booking-card:hover {
@@ -66,58 +64,95 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Avatar and info section */
-.booking-info {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.avatar {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1rem auto;
+/* Profile avatar */
+.profile-avatar {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #eac1ac, #fbd1bc);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f17d00;
-  font-size: 2rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Employee info */
+.booking-info {
+  width: 100%;
+}
+
+/* Employee name */
 .booking-name {
-  font-size: 1.75rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #333;
   margin-bottom: 0.5rem;
+  word-wrap: break-word;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limits name to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+/* Job, location, experience */
 .booking-job,
 .booking-location,
 .booking-experience {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #555;
   margin: 0.25rem 0;
+  text-align: center;
+  word-wrap: break-word;
 }
 
-.booking-experience {
-  margin-top: 0.5rem;
-}
-
-/* Button styles */
+/* Button */
 .booking-button {
-  display: inline-block;
   background: linear-gradient(135deg, #fa9223, #e8af72);
   color: #fff;
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
-  text-decoration: none;
   font-weight: 600;
   transition: background 0.3s ease, transform 0.3s ease;
   margin-top: auto;
+  border: none;
+  cursor: pointer;
 }
 
 .booking-button:hover {
   background: linear-gradient(135deg, #f17d00, #ff9e36);
   transform: scale(1.03);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .booking-card {
+    padding: 1rem;
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .booking-name {
+    font-size: 1.2rem;
+  }
+
+  .booking-job,
+  .booking-location,
+  .booking-experience {
+    font-size: 0.9rem;
+  }
+
+  .booking-button {
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Error message */
+.error-message {
+  color: red;
+  font-size: 1rem;
+  text-align: center;
 }

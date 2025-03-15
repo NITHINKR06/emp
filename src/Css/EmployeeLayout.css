@@ -101,6 +101,31 @@
   align-items: center;
 }
 
+/* Profile Avatar */
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+/* If image is missing */
+.photo-placeholder {
+  width: 120px;
+  height: 120px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+
 .info-list li:hover {
   background: #fff3e0; /* light orange hover effect */
 }

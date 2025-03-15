@@ -1,138 +1,115 @@
-/* Overall Payment Page Background */
-
+/* Global Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Payment Page Background */
 .payment-page {
-    position: relative;
-    min-height: 100vh;
-    /* background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  /* Not Found State */
-  .not-found-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-    text-align: center;
-  }
-  
-  .not-found-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 1rem;
-  }
-  
-  .not-found-message {
-    font-size: 1.2rem;
-    color: #fff;
-  }
-  
-  /* Main Payment Card */
-  .payment-card {
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    padding: 40px;
-    max-width: 800px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  /* Payment Portal Title */
-  .payment-title {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #ea7c22;
-    margin-bottom: 30px;
-  }
-  
-  /* Booking Details Card */
-  .booking-details {
-    background: #f9f9f9;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 30px;
-    text-align: left;
-  }
-  
-  .details-header {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #ea7c22;
-    border-bottom: 2px solid #e5e5e5;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .details-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  
-  @media (min-width: 768px) {
-    .details-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.655);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-  }
-  
-  .detail-item {
-    font-size: 1.2rem;
-    color: #555;
-  }
-  
-  .detail-item span {
-    font-weight: bold;
-    color: #222;
-  }
-  
-  /* Payment Button */
-  .payment-button-container {
-    margin-top: 20px;
-  }
-  
-  .proceed-button {
-    background: #f17d00;
-    color: #ffffff;
-    font-size: 1.2rem;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .proceed-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }
-  
- /* Modal Overlay (applies to all screen sizes) */
+  min-height: 100vh;
+  margin-top: 60px;
+  /* background: linear-gradient(135deg, #f6d365, #fda085); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Payment Card */
+.payment-card {
+  background: #ffffff00;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  padding: 40px;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+/* Payment Title */
+.payment-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ea7c22;
+  margin-bottom: 30px;
+}
+
+/* Booking Details Section */
+.booking-details {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+/* Booking Details Header */
+.details-header {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ea7c22;
+  border-bottom: 2px solid #e5e5e5;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Details Grid */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  background: #f1f3f5;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Detail Items */
+.detail-item {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.detail-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detail-item span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+/* Payment Button Container */
+.payment-button-container {
+  margin-top: 20px;
+}
+
+/* Payment Buttons */
+.proceed-button {
+  background: #f17d00;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.proceed-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -143,10 +120,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  padding: 10px;
+  z-index: 900;
 }
 
-/* Modal Window (general styling) */
+/* Modal Window */
 .modal-window {
   background: #fff;
   border-radius: 12px;
@@ -156,7 +134,53 @@
   padding: 20px;
 }
 
-/* Responsive adjustments for mobile view */
+/* Modal Header */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #aaaaaa;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.modal-header h2 {
+  font-size: 1.8rem;
+  color: #e66e05;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #f10000;
+  cursor: pointer;
+}
+
+/* Not Found State */
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f6d365, #fda085);
+  text-align: center;
+}
+
+.not-found-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.not-found-message {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 767px) {
   .modal-window {
     width: 90%;
@@ -166,29 +190,3 @@
     margin: 20px;
   }
 }
-  
-  /* Modal Header */
-  .modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 2px solid #aaaaaa;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .modal-header h2 {
-    font-size: 1.8rem;
-    color: #e66e05;
-  }
-  
-  .close-button {
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: #f10000;
-    cursor: pointer;
-  }
-  
-  /* Modal Content */
-  

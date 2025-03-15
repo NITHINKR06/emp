@@ -1,8 +1,7 @@
-/* Footer.css */
 
 /* Footer Container */
 .footer {
-    background-color: #f9fafb; /* Similar to bg-gray-50 */
+    /* background-color: #ffffff; Similar to bg-gray-50 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
     width: 100%;
   }

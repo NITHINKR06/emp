@@ -26,7 +26,7 @@ export default function SettingsPage() {
 
   const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
 
-  const fileName = employee.profilePhotoUrl.split('\\').pop();
+  const fileName = employee?.profilePhotoUrl ? employee.profilePhotoUrl.split('\\').pop() : '';
 
   // Animation variants for container and elements
   const containerVariants = {
@@ -81,8 +81,8 @@ export default function SettingsPage() {
           about: data.about || ''
         });
         // Optionally, set the current profile photo URL if available
-        if (data.profilePhotoUrl) {
-          setPreviewUrl(data.profilePhotoUrl);
+        if (data.profilePhotoUrl.split('\\').pop()) {
+          setPreviewUrl(data.profilePhotoUrl.split('\\').pop());
         }
       })
       .catch((err) => {
@@ -200,102 +200,98 @@ export default function SettingsPage() {
     }
   };
 
-  if (error) {
-    return <div className="error-message">{error}</div>;
-  }
-  if (!employee) {
-    return <div className="loading-message">Loading...</div>;
-  }
-
   return (
-    <motion.div
-      className="settings-container"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-    >
-      <h1>Settings Page</h1>
-      {success && (
-        <motion.div 
-          className="success-message"
-          variants={fadeInVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {success}
-        </motion.div>
-      )}
-      <form onSubmit={handleSubmit} className="settings-form">
-        <div className="form-group">
-          <label>Profile Photo:</label>
-          <input type="file" accept="image/*" onChange={handleFileChange} />
-          {previewUrl && (
-            <img src={`${BASE_URL}/uploads/Employee/${fileName}`} alt="Profile Preview" className="profile-preview" />
-          )}
-        </div>
-        <div className="form-group">
-          <label>Name:</label>
-          <input name="name" value={formData.name} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input name="email" value={formData.email} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Job Title:</label>
-          <input name="jobName" value={formData.jobName} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Location:</label>
-          <input name="location" value={formData.location} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Education:</label>
-          <input name="education" value={formData.education} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label>Experience (years):</label>
-          <input
-            name="experience"
-            type="number"
-            value={formData.experience}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>About:</label>
-          <textarea name="about" value={formData.about} onChange={handleChange} />
-        </div>
-        <motion.button 
-          type="submit" 
-          className="update-button"
-          variants={buttonVariants}
-          whileHover="hover"
-        >
-          Update Profile
-        </motion.button>
-      </form>
-      <hr className="separator" />
-      <div className="rating-review-section">
-        <h2>Rating &amp; Review</h2>
-        <p>
-          <strong>Rating:</strong> {employee.rating ? employee.rating : 'No rating'}
-        </p>
-        <p>
-          <strong>Review:</strong> {employee.review ? employee.review : 'No review'}
-        </p>
-        {(employee.rating || employee.review) && (
+    <div style={{marginTop:'100px', marginBottom:'30px'}}>
+      <motion.div
+        className="settings-container"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        <h1>Settings Page</h1>
+        {success && (
+          <motion.div 
+            className="success-message"
+            variants={fadeInVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {success}
+          </motion.div>
+        )}
+        <form onSubmit={handleSubmit} className="settings-form">
+          <div className="form-group">
+            <label>Profile Photo:</label>
+            <input type="file" accept="image/*" onChange={handleFileChange} />
+            {previewUrl && (
+              <img src={`${BASE_URL}/uploads/Employee/${fileName}`} alt="Profile Preview" className="profile-preview" />
+            )}
+          </div>
+          <div className="form-group">
+            <label>Name:</label>
+            <input name="name" value={formData.name} onChange={handleChange} />
+          </div>
+          <div className="form-group">
+            <label>Email:</label>
+            <input name="email" value={formData.email} onChange={handleChange} />
+          </div>
+          <div className="form-group">
+            <label>Job Title:</label>
+            <input name="jobName" value={formData.jobName} onChange={handleChange} />
+          </div>
+          <div className="form-group">
+            <label>Location:</label>
+            <input name="location" value={formData.location} onChange={handleChange} />
+          </div>
+          <div className="form-group">
+            <label>Education:</label>
+            <input name="education" value={formData.education} onChange={handleChange} />
+          </div>
+          <div className="form-group">
+            <label>Experience (years):</label>
+            <input
+              name="experience"
+              type="number"
+              value={formData.experience}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>About:</label>
+            <textarea name="about" value={formData.about} onChange={handleChange} />
+          </div>
           <motion.button 
-            onClick={handleDeleteRatingReview}
-            className="delete-button"
+            type="submit" 
+            className="update-button"
             variants={buttonVariants}
             whileHover="hover"
           >
-            Delete Rating &amp; Review
+            Update Profile
           </motion.button>
-        )}
-      </div>
-    </motion.div>
+        </form>
+        <hr className="separator" />
+        <div className="rating-review-section">
+          <h2>Ratings &amp; Reviews</h2>
+          {employee && employee.reviews && employee.reviews.length > 0 ? (
+            employee.reviews.map((review, index) => (
+              <div key={index} className="review-item">
+                <p>
+                  <strong>Rating:</strong> {review.rating} / 5
+                </p>
+                <p>
+                  <strong>Review:</strong> {review.message}
+                </p>
+                <p>
+                  <strong>By:</strong> {review.name} on {new Date(review.date).toLocaleDateString()}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p>No reviews yet.</p>
+          )}
+        </div>
+      </motion.div>
+    </div>
   );
 }

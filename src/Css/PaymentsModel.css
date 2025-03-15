@@ -6,10 +6,7 @@
 }
 
 /* Basic Styles */
-body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #f9f9f9;
-}
+
 
 /* Center the payments model */
 .payments-model {
@@ -17,6 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  margin: 15px;
 }
 
 /* Main container: occupies 70% on larger screens */

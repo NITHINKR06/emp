@@ -1,34 +1,50 @@
-/* Container: No explicit background color */
-.signup-container {
+/* -------------------- General Styling -------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #ffffff, #e2d6c3);
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: linear-gradient(135deg, #ffffff, #e2d6c3);
-
 }
 
-/* Signup card with two-column layout */
-.signup-card {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+/* -------------------- Signup Container -------------------- */
+.signup-container {
   display: flex;
-  max-width: 800px;
-  width: 100%;
-  overflow: hidden;
-  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
-/* Left side: Image */
+/* -------------------- Signup Card -------------------- */
+.signup-card {
+  display: flex;
+  max-width: 650px;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.signup-card:hover {
+  transform: translateY(-5px);
+}
+
 .card-left {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #f3f3f3;
 }
 
 .card-image {
@@ -37,204 +53,141 @@
   object-fit: cover;
 }
 
-/* Right side: Form content */
 .card-right {
   flex: 1;
-  padding: 40px 30px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-/* Logo section */
-.logo-section {
-  margin-bottom: 20px;
-}
-
-.logo-image {
-  width: 80px;
-  height: auto;
-  border-radius: 50%;
-  border: 2px solid #F97316;
-}
-
-/* Title styling */
+/* -------------------- Form Styling -------------------- */
 .signup-title {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Error message */
 .error-message {
-  color: #d32f2f;
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
   margin-bottom: 10px;
-  font-size: 0.95rem;
 }
 
-/* Form styling */
 .signup-form {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  align-items: center;
 }
 
-/* Input group styling */
+/* -------------------- Input Fields -------------------- */
 .input-group {
-  position: relative;
-  width: 100%;
-}
-
-.input-field {
-  width: 100%;
-  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  background: #fff;
+  height: 50px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.input-field:focus {
+.input-group:focus-within {
+  border-color: #ff7b00;
+  box-shadow: 0 0 8px rgba(255, 145, 0, 0.2);
+}
+
+.input-icon {
+  margin-left: 15px;
+  margin-right: 10px;
+  color: #ff7b00;
+  font-size: 18px;
+}
+
+.input-field {
+  flex: 1;
+  font-size: 16px;
+  border: none;
   outline: none;
-  border-color: #F97316;
-  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+  background: transparent;
+  height: 100%;
+  padding: 5px;
+  padding-right: 8px;
 }
 
-/* Password toggle */
 .password-toggle {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  background: transparent;
+  margin-right: 15px;
+  background: none;
   border: none;
+  font-size: 14px;
+  color: #ff7b00;
   cursor: pointer;
-  color: #F97316;
+  transition: color 0.3s ease;
 }
 
-/* Button styles */
-.next-button,
-.back-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+.password-toggle:hover {
+  color: #e86900;
 }
 
-.next-button {
-  background-color: #F97316;
-  color: #fff;
+/* -------------------- Role Selector -------------------- */
+.role-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 
-.next-button:hover {
-  background-color: #EA580C;
-  transform: scale(1.02);
-}
-
-.submit-button {
-  background-color: #F97316;
-  color: #fff;
-}
-
-.submit-button:hover {
-  background-color: #EA580C;
-  transform: scale(1.02);
-}
-
-.back-button {
-  background: transparent;
-  color: #F97316;
-  border: 2px solid #F97316;
-}
-
-.back-button:hover {
-  background-color: #F97316;
-  color: #fff;
-  transform: scale(1.02);
-}
-
-/* Button group */
-.button-group {
+.role-options {
   display: flex;
   gap: 10px;
   width: 100%;
 }
 
-/* Password strength meter */
-.strength-meter {
+.role-option {
+  flex: 1;
+  padding: 8px;
+  border: 2px solid #ff7b00;
+  border-radius: 8px;
+  background: transparent;
+  color: #ff7b00;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.role-option.active {
+  background: #ff7b00;
+  color: white;
+}
+
+/* -------------------- Buttons -------------------- */
+button {
   width: 100%;
-  height: 8px;
-  background: #e0e0e0;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-top: 5px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #fa8d26, #ff7b00);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.strength-bar {
-  height: 100%;
-  background-color: #F97316;
-  transition: width 0.3s ease;
+button:hover {
+  background: linear-gradient(90deg, #f8a557, #ff7b00);
 }
 
-.strength-label {
-  font-size: 0.95rem;
-  margin-top: 5px;
-  color: #666;
-}
-
-/* Bottom card styling */
-.bottom-card {
-  margin-top: 30px;
-  text-align: center;
-}
-
-.bottom-text {
-  font-size: 1rem;
-  color: #333;
-}
-
-.bottom-link {
-  color: #F97316;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.bottom-link:hover {
-  color: #EA580C;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .signup-card {
-    flex-direction: column;
-    max-width: 420px;
-  }
-  .card-left {
-    display: none;
-  }
-  .card-right {
-    padding: 30px 20px;
-  }
-  .signup-title {
-    font-size: 1.8rem;
-  }
-}
-
+/* -------------------- Login Redirect Card -------------------- */
 .back-login-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 15px 20px 15px 20px; */
-  margin-top: 30px;
+  padding: 15px 20px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -246,71 +199,40 @@
   background: #f9f9f9;
 }
 
-/* Container for the role selector */
-.input-box.role-selector {
-  width: 100%;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Label styling */
-.input-box.role-selector label {
-  font-size: 1rem;
-  margin-bottom: 10px;
+.signup-text {
+  font-size: 16px;
+  margin-right: 8px;
   color: #333;
-  font-weight: 500;
 }
 
-/* Role options container with relative positioning */
-.role-options {
-  position: relative;
-  display: flex;
-  border: 2px solid #F97316;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-/* Base styling for role option buttons */
-.role-option {
-  flex: 1;
-  padding: 12px;
-  background: transparent;
-  border: none;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #F97316;
-  z-index: 1;
-  cursor: pointer;
+.signup-link {
+  font-size: 16px;
+  color: #ff7b00;
+  text-decoration: none;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
-/* Hover effect on buttons */
-.role-option:hover {
-  color: #EA580C;
+.signup-link:hover {
+  color: #e86900;
 }
 
-/* Active state styling for role options */
-.role-option.active {
-  color: #fff;
-}
-
-/* Animated indicator highlighting the selected role */
-.role-indicator {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background-color: #F97316;
-  transition: transform 0.3s ease;
-  z-index: 0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 480px) {
-  .role-option {
-    padding: 10px;
-    font-size: 0.95rem;
+/* -------------------- Responsive Design -------------------- */
+@media (max-width: 768px) {
+  .signup-card,
+  .back-login-card {
+    width: 90%;
+  }
+  
+  .signup-card {
+    flex-direction: column;
+  }
+  
+  .card-left {
+    display: none;
+  }
+  
+  .card-right {
+    padding: 20px;
   }
 }

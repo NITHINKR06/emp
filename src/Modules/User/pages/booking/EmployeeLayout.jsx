@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 import "../../../../Css/EmployeeLayout.css";
 import CalendarPage from "../../../../Components/Calender/CalendarPage";
 import { useParams } from 'react-router-dom';
+import ReviewsPage from '../../../../Components/Review/ReviewsPage';
+import {jwtDecode} from "jwt-decode";
+import Cookies from 'js-cookie';
 
-// Container variants for the entire page with reduced vertical movement.
 const containerVariants = {
   hidden: { 
     opacity: 0, 
@@ -34,7 +37,6 @@ const containerVariants = {
   }
 };
 
-// Child variants for inner elements.
 const childVariants = {
   hidden: { opacity: 0, y: 10 },
   visible: { 
@@ -44,69 +46,108 @@ const childVariants = {
   }
 };
 
-const bookings = [
-  {
-    id: "1",
-    name: "ABC",
-    job: "Programmer",
-    email: "abc@example.com",
-    about: "Software engineer with 5 years of experience.",
-    education: "B.Sc in Computer Science",
-  },
-  {
-    id: "2",
-    name: "No Name",
-    job: "Not Mentioned",
-    email: "unknown@example.com",
-    about: "Details updating...",
-    education: "Not mentioned",
-  },
-  {
-    id: "3",
-    name: "XYZ",
-    job: "Developer",
-    email: "xyz@example.com",
-    about: "Full-stack developer with expertise in React and Node.js.",
-    education: "M.Sc in Software Engineering",
-  },
-];
-
-
 function SameLayout() {
+
+  const { id } = useParams();
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [mobile, setMobile] = useState('');
+  const [bookingTime, setBookingTime] = useState('');
+  const [bookingLocation, setBookingLocation] = useState('');
+  const [currentLocation, setCurrentLocation] = useState('');
+
+  // Optional states for reviews
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [reviews, setReviews] = useState([]);
-  // Track open details for each section.
-  // const [openDetails, setOpenDetails] = useState({});
 
-  const { id } = useParams(); // Extract ID from URL
-  const [selectedBooking, setSelectedBooking] = useState(null);
-
-  useEffect(() => {
-    // Find booking by ID
-    const booking = bookings.find((b) => b.id === id);
-    setSelectedBooking(booking);
-  }, [id]);
-
-  if (!selectedBooking) {
-    return <h2>Booking not found</h2>;
+  const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
+  // Get token and decode it.
+  const token = Cookies.get('token');
+  let isTokenValid = true;
+  let userId = null;
+  try {
+    if (!token) {
+      isTokenValid = false;
+    } else {
+      const decoded = jwtDecode(token);
+      userId = decoded.user.id; // Ensure your JWT payload includes the "id" field
+      // console.log("Decoded token:", decoded);
+    }
+  } catch (err) {
+    isTokenValid = false;
   }
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    // Only fetch employee data if the token is valid
+      const fetchEmployee = async () => {
+        try {
+          const response = await axios.get(`${BASE_URL}/api/employees/${id}`);
+          setSelectedEmployee(response.data);
+        } catch (error) {
+          console.error("Error fetching employee data:", error);
+        }
+      };
+      fetchEmployee();
+
+  }, []);
+
+  // Determine what to render based on token validity and employee data
+  if (!isTokenValid) {
+    return <div>No token found or invalid token. Please log in.</div>;
+  }
+
+  if (!selectedEmployee) {
+    return <h2>Loading employee data...</h2>;
+  }
+
+  const fileName = selectedEmployee?.profilePhotoUrl 
+    ? selectedEmployee.profilePhotoUrl.split('\\').pop() 
+    : '';
+
+  const handleBookingSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !message || rating === 0) return;
-    const newReview = {
-      name,
-      message,
-      rating,
-      date: new Date().toLocaleDateString(),
+    if (!mobile || !bookingTime || !bookingLocation || !currentLocation) {
+      alert("Please fill out all booking fields.");
+      return;
+    }
+    // Dummy current user details; replace with real user data as needed.
+    const currentUser = { 
+      id: "user123", 
+      name: "John Doe", 
+      email: "john.doe@example.com" 
     };
-    setReviews([newReview, ...reviews]);
-    setRating(0);
-    setName('');
-    setMessage('');
+
+    const bookingData = {
+      userId: userId,
+      employeeId: id,
+      time: bookingTime,
+      location: bookingLocation,
+      currentLocation: currentLocation,
+      mobileNumber: mobile,
+      jobName: selectedEmployee.jobName,
+      employeeEmail: selectedEmployee.email,
+      bookingDate: new Date()
+    };
+
+    console.log(bookingData);
+
+    try {
+      await axios.post(`${BASE_URL}/api/bookings`, bookingData);
+      alert("Booking successful");
+      // Reset booking form fields
+      setMobile('');
+      setBookingTime('');
+      setBookingLocation('');
+      setCurrentLocation('');
+    } catch (error) {
+      console.error("Error booking employee:", error.message);
+      const errMsg = error.response && error.response.data 
+        ? error.response.data.message 
+        : error.message;
+      alert("Booking failed: " + errMsg);
+    }
   };
 
   return (
@@ -119,52 +160,92 @@ function SameLayout() {
     >
       {/* Top Section */}
       <motion.div className="top-section" variants={childVariants}>
-      <motion.div className="left-side">
-          <div className="photo-placeholder">Photo</div>
+        <motion.div className="left-side">
+          <div className="photo-placeholder">
+            <motion.img 
+              src={`${BASE_URL}/uploads/Employee/${fileName}`}
+              alt={selectedEmployee.name} 
+              className="profile-avatar"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            />
+          </div>
           <ul className="info-list">
-            <li><strong>Name:</strong> {selectedBooking.name}</li>
-            <li><strong>Email:</strong> {selectedBooking.email}</li>
-            <li><strong>Job:</strong> {selectedBooking.job}</li>
-            <li><strong>About:</strong> {selectedBooking.about}</li>
-            <li><strong>Education:</strong> {selectedBooking.education}</li>
+            <li><strong>Name:</strong> {selectedEmployee.name}</li>
+            <li><strong>Email:</strong> {selectedEmployee.email}</li>
+            <li><strong>Job:</strong> {selectedEmployee.jobName}</li>
+            <li><strong>Location:</strong> {selectedEmployee.location}</li>
+            <li><strong>About:</strong> {selectedEmployee.about}</li>
+            <li><strong>Education:</strong> {selectedEmployee.education}</li>
+            <li>
+              <strong>Experience:</strong> {selectedEmployee.experience}{" "}
+              {selectedEmployee.experience > 1 ? "years" : "year"}
+            </li>
           </ul>
         </motion.div>
         <motion.div className="right-side" variants={childVariants}>
           <motion.div className="input-section" variants={childVariants}>
-            <div className="input-row">
-              <div className="input-container">
-                <input type="text" placeholder=" " id="mobile" />
-                <label htmlFor="mobile">Mobile Number</label>
+            <form onSubmit={handleBookingSubmit}>
+              <div className="input-row">
+                <div className="input-container">
+                  <input 
+                    type="text" 
+                    placeholder=" " 
+                    id="mobile" 
+                    value={mobile}
+                    onChange={(e) => setMobile(e.target.value)}
+                  />
+                  <label htmlFor="mobile">Mobile Number</label>
+                </div>
               </div>
-            </div>
-            <div className="input-row">
-              <div className="input-container">
-                <input type="time" placeholder=" " id="time" />
-                <label htmlFor="time">Time (12hr)</label>
+              <div className="input-row">
+                <div className="input-container">
+                  <input 
+                    type="time" 
+                    placeholder=" " 
+                    id="time" 
+                    value={bookingTime}
+                    onChange={(e) => setBookingTime(e.target.value)}
+                  />
+                  <label htmlFor="time">Time (12hr)</label>
+                </div>
               </div>
-            </div>
-            <div className="input-row">
-              <div className="input-container">
-                <input type="text" placeholder=" " id="location" />
-                <label htmlFor="location">Location</label>
+              <div className="input-row">
+                <div className="input-container">
+                  <input 
+                    type="text" 
+                    placeholder=" " 
+                    id="location" 
+                    value={bookingLocation}
+                    onChange={(e) => setBookingLocation(e.target.value)}
+                  />
+                  <label htmlFor="location">Location</label>
+                </div>
               </div>
-            </div>
-            <div className="input-row">
-              <div className="input-container">
-                <input type="text" placeholder=" " id="current-location" />
-                <label htmlFor="current-location">Your Current Location</label>
+              <div className="input-row">
+                <div className="input-container">
+                  <input 
+                    type="text" 
+                    placeholder=" " 
+                    id="current-location" 
+                    value={currentLocation}
+                    onChange={(e) => setCurrentLocation(e.target.value)}
+                  />
+                  <label htmlFor="current-location">Your Current Location</label>
+                </div>
               </div>
-            </div>
-            <div className="button-row">
-              <motion.button 
-                className="btn2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                variants={childVariants}
-              >
-                Book Now
-              </motion.button>
-            </div>
+              <div className="button-row">
+                <motion.button 
+                  className="btn2"
+                  type="submit"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  variants={childVariants}
+                >
+                  Book Now
+                </motion.button>
+              </div>
+            </form>
           </motion.div>
           <motion.div className="calendar-box" variants={childVariants}>
             <CalendarPage />
@@ -173,109 +254,8 @@ function SameLayout() {
       </motion.div>
 
       {/* Reviews Section */}
-      <motion.div className="reviews-section" variants={childVariants}>
-        <motion.div className="reviews-form" variants={childVariants}>
-          <h3>Leave Your Review</h3>
-          <motion.form 
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="rating-stars">
-              {[...Array(5)].map((_, index) => {
-                const starValue = 5 - index;
-                return (
-                  <React.Fragment key={starValue}>
-                    <input
-                      type="radio"
-                      name="rating"
-                      id={`rating-${starValue}`}
-                      value={starValue}
-                      checked={rating === starValue}
-                      onChange={() => setRating(starValue)}
-                    />
-                    <label
-                      htmlFor={`rating-${starValue}`}
-                      onMouseEnter={() => setHover(starValue)}
-                      onMouseLeave={() => setHover(0)}
-                      style={{
-                        color: starValue <= (hover || rating) ? '#ff9800' : '#ddd'
-                      }}
-                    >
-                      &#9733;
-                    </label>
-                  </React.Fragment>
-                );
-              })}
-            </div>
-            <div className="input-container">
-              <input
-                type="text"
-                required
-                placeholder=" "
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <label>Name</label>
-            </div>
-            <div className="input-container">
-              <textarea
-                required
-                placeholder=" "
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              ></textarea>
-              <label>Message</label>
-            </div>
-            <motion.button 
-              type="submit" 
-              className="btn-submit"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Send Review
-            </motion.button>
-          </motion.form>
-        </motion.div>
-        <motion.div className="reviews-display" variants={childVariants}>
-          <h3>Customer Reviews</h3>
-          {reviews.length === 0 ? (
-            <p>No reviews yet...</p>
-          ) : (
-            reviews.map((review, idx) => (
-              <motion.div
-                className="review-card"
-                key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="review-header">
-                  <span className="reviewer-name">{review.name}</span>
-                  <span className="review-date">{review.date}</span>
-                </div>
-                <div className="review-rating">
-                  {[...Array(5)].map((_, index) => {
-                    const starValue = index + 1;
-                    return (
-                      <span
-                        key={starValue}
-                        style={{
-                          color: starValue <= review.rating ? '#ff9800' : '#ddd'
-                        }}
-                      >
-                        &#9733;
-                      </span>
-                    );
-                  })}
-                </div>
-                <p className="review-text">{review.message}</p>
-              </motion.div>
-            ))
-          )}
-        </motion.div>
+      <motion.div variants={childVariants}>
+        <ReviewsPage employeeId={id} />
       </motion.div>
     </motion.div>
   );

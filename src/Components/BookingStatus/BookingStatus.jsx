@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../../Css/BookingStatus.css';
-
-const dummyBookings = [
-  { _id: '1', name: 'John Doe', experience: 5, status: 'Confirmed', rating: 4 },
-  { _id: '2', name: 'Jane Smith', experience: 8, status: 'Pending', rating: 5 },
-  { _id: '3', name: 'Alice Johnson', experience: 3, status: 'Cancelled', rating: 3 },
-  // ... more bookings
-];
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 const containerVariants = {
   hidden: { opacity: 0, scale: 0.95 },
@@ -52,7 +47,6 @@ const tooltipVariants = {
   exit: { opacity: 0, y: 5, scale: 0.95, transition: { duration: 0.2 } },
 };
 
-// StarRating component for rendering rating stars.
 const StarRating = ({ rating }) => (
   <div className="booking-rating">
     {[1, 2, 3, 4, 5].map((i) => (
@@ -68,7 +62,6 @@ const StarRating = ({ rating }) => (
   </div>
 );
 
-// BookingCard component for individual booking display.
 const BookingCard = ({ booking, isHovered, onHoverStart, onHoverEnd }) => (
   <motion.div
     className="booking-card"
@@ -104,13 +97,13 @@ const BookingCard = ({ booking, isHovered, onHoverStart, onHoverEnd }) => (
     >
       Status: <strong>{booking.status}</strong>
     </motion.p>
-    <motion.div
+    {/* <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5 }}
     >
       <StarRating rating={booking.rating} />
-    </motion.div>
+    </motion.div> */}
     <div className="booking-actions">
       <motion.button
         className="action-button cancel-button"
@@ -121,14 +114,14 @@ const BookingCard = ({ booking, isHovered, onHoverStart, onHoverEnd }) => (
       </motion.button>
       <div className="payment-container">
         <Link to={`/user/booking/status/${booking._id}`}>
-        <motion.button
-          className="action-button payment-button"
-          variants={buttonVariants}
-          aria-label="Proceed to payment"
-        >
-          Payment
-        </motion.button>
-          </Link>
+          <motion.button
+            className="action-button payment-button"
+            variants={buttonVariants}
+            aria-label="Proceed to payment"
+          >
+            Payment
+          </motion.button>
+        </Link>
         <AnimatePresence>
           {isHovered && (
             <motion.div
@@ -157,8 +150,51 @@ const BookingCard = ({ booking, isHovered, onHoverStart, onHoverEnd }) => (
 );
 
 export default function BookingStatus() {
-  const [bookings] = useState(dummyBookings);
+  const [bookings, setBookings] = useState([]);
   const [hoveredBookingId, setHoveredBookingId] = useState(null);
+  const [error, setError] = useState(null);
+
+  // Use your backend URL; it defaults to localhost if not set
+  const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (!token) {
+      setError('No token found. Please log in.');
+      return;
+    }
+    let userId;
+    try {
+      const decoded = jwtDecode(token);
+      userId = decoded.user.id;
+    } catch (err) {
+      setError('Invalid token.');
+      return;
+    }
+
+    const fetchBookings = async () => {
+
+      console.log(userId)
+      try {
+        const response = await fetch(`${BASE_URL}/api/bookings/${userId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setBookings(data);
+        console.log(data,'data')
+      } catch (error) {
+        console.log('Error fetching bookings:', error);
+        setError('Error fetching bookings.');
+      }
+    };
+
+    fetchBookings();
+  }, []);
+
+  if (error) {
+    return <p className="error-message">{error}</p>;
+  }
 
   return (
     <div className="booking-status-container">
