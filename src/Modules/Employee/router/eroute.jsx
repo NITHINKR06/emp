@@ -1,9 +1,9 @@
 import React from 'react'
 import Home from '../../Home'
 import { Route, Routes } from 'react-router-dom'
-import Booking from '../pages/booking/booking'
 import EmployeeProfile from '../pages/dashboard/EmployeeProfile'
 import SettingsPage from '../pages/settings/SettingsPage'
+import BookingStatu from '../pages/bsemployee/BookingStatu'
 
 export default function ERoute() {
   return (
@@ -16,12 +16,6 @@ export default function ERoute() {
                 }
             />
             <Route 
-                path='/booking' 
-                element={
-                <Booking/>
-                } 
-            />
-            <Route 
                 path='/profile' 
                 element={
                 <EmployeeProfile/>
@@ -31,6 +25,12 @@ export default function ERoute() {
                 path='/settings' 
                 element={
                 <SettingsPage/>
+                } 
+            />
+            <Route 
+                path='/booking' 
+                element={
+                <BookingStatu/>
                 } 
             />
       </Routes>

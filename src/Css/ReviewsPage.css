@@ -1,12 +1,14 @@
 /* ReviewsPage.css */
 
 .reviews-container {
-    max-width: 800px;
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
     margin: 2rem auto;
     padding: 2rem;
-    background: #ffffff;
+    background: #ffffff00;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
   }
   
   .reviews-form h3,
@@ -20,6 +22,8 @@
   .reviews-form {
     background: #f9f9f9;
     padding: 1.5rem;
+    width: 100%;
+    height: auto;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
@@ -106,6 +110,7 @@
   
   .reviews-display {
     padding: 1.5rem;
+    width: 100%;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -217,6 +222,7 @@
   @media (max-width: 768px) {
     .reviews-container {
       padding: 1rem;
+      flex-direction: column;
     }
   
     .rating-stars label {
@@ -229,4 +235,5 @@
       padding: 8px 12px;
     }
   }
+  
   

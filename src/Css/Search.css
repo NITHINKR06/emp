@@ -5,6 +5,15 @@
   margin-top: 3rem;
 }
 
+.better-search-input[type="date"],
+.better-search-input[type="time"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0.75rem 2.5rem; /* Ensure padding is consistent */
+}
+
+
 /* Form styling with a soft background and rounded corners */
 .better-search-form {
   position: relative;

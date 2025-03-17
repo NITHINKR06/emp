@@ -1,40 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../Css/CalendarPage.css";
+import axios from "axios";
 
-const CalendarPage = () => {
+function CalendarPage({ userId, employeeId }) {
   const [date, setDate] = useState(new Date());
-  const [events, setEvents] = useState({});
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [eventInput, setEventInput] = useState("");
+  const [bookings, setBookings] = useState([]);
 
+  const BASE_URL = process.env.BACKEND_URL || "http://localhost:5000";
+  
   const month = date.getMonth();
   const year = date.getFullYear();
   const today = new Date();
 
-  // Navigate to previous month
-  const prevMonth = () => {
-    setDate(new Date(year, month - 1, 1));
-  };
+  // Fetch booking data for the given user and employee.
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const response = await axios.get(
+          `${BASE_URL}/api/bookings/user/${userId}/employee/${employeeId}`
+        );
+        setBookings(response.data);
+        console.log("Fetched bookings:", response.data);
+      } catch (error) {
+        console.error("Error fetching bookings:", error);
+      }
+    };
+    if (userId && employeeId) {
+      fetchBookings();
+    }
+  }, [userId, employeeId, BASE_URL]);
 
-  // Navigate to next month
-  const nextMonth = () => {
-    setDate(new Date(year, month + 1, 1));
-  };
-
-  // Helper to format date keys as "YYYY-MM-DD"
-  const getDateKey = (d) => {
+  // Helper function to format dates as YYYY-MM-DD.
+  const formatDate = (d) => {
     const y = d.getFullYear();
-    const m = ("0" + (d.getMonth() + 1)).slice(-2);
-    const day = ("0" + d.getDate()).slice(-2);
+    const m = (d.getMonth() + 1).toString().padStart(2, "0");
+    const day = d.getDate().toString().padStart(2, "0");
     return `${y}-${m}-${day}`;
   };
 
-  // Calculate number of days in the month
+  // Calculate the number of days in the month and the start day.
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  // Get the weekday of the first day of the month (0 = Sunday, 6 = Saturday)
   const startDay = new Date(year, month, 1).getDay();
 
-  // Create weeks array for calendar grid
+  // Create weeks array for calendar grid.
   const weeks = [];
   let dayCounter = 1;
   for (let i = 0; i < 6; i++) {
@@ -52,43 +60,23 @@ const CalendarPage = () => {
     weeks.push(week);
   }
 
-  // Open modal to add event on a given day
-  const handleDayClick = (day) => {
-    if (!day) return;
-    const clickedDate = new Date(year, month, day);
-    setSelectedDay(clickedDate);
-    setEventInput("");
+  // Navigation functions.
+  const prevMonth = () => {
+    setDate(new Date(year, month - 1, 1));
   };
 
-  // Add event to the selected day
-  const addEvent = () => {
-    if (eventInput.trim() === "") return;
-    const key = getDateKey(selectedDay);
-    const existingEvents = events[key] || [];
-    setEvents({
-      ...events,
-      [key]: [...existingEvents, eventInput]
-    });
-    setSelectedDay(null);
-    setEventInput("");
-  };
-
-  // Close the modal without adding an event
-  const closeModal = () => {
-    setSelectedDay(null);
-    setEventInput("");
+  const nextMonth = () => {
+    setDate(new Date(year, month + 1, 1));
   };
 
   return (
     <div className="calendar-container">
-      <h1 style={{fontSize:'1.5rem',alignItems:'center',justifyContent:'center'}}>Available Dates</h1>
       <div className="calendar-header">
         <button onClick={prevMonth}>&lt; Prev</button>
         <h2>
           {date.toLocaleString("default", { month: "long" })} {year}
         </h2>
         <button onClick={nextMonth}>Next &gt;</button>
-        {/* <button onClick={goToToday}>Today</button> */}
       </div>
       <div className="calendar-grid">
         {/* Weekday headers */}
@@ -100,65 +88,45 @@ const CalendarPage = () => {
         {/* Calendar cells */}
         {weeks.map((week, i) =>
           week.map((day, j) => {
-            const cellDate = day ? new Date(year, month, day) : null;
-            const key = cellDate ? getDateKey(cellDate) : "";
-            const dayEvents = key ? events[key] : [];
-            // Highlight today's cell
-            const isToday =
-              cellDate &&
-              cellDate.getDate() === today.getDate() &&
-              cellDate.getMonth() === today.getMonth() &&
-              cellDate.getFullYear() === today.getFullYear();
+            if (!day) {
+              return <div key={`${i}-${j}`} className="day-cell"></div>;
+            }
+            const cellDate = new Date(year, month, day);
+            const formattedCellDate = formatDate(cellDate);
+
+            // Find if there is a booking on this date.
+            const bookingForDate = bookings.find((booking) => {
+              const bookingDate = new Date(booking.bookingDate);
+              return formatDate(bookingDate) === formattedCellDate;
+            });
+
+            // Determine cell class based on booking existence and status.
+            let cellClass = "day-cell";
+            if (bookingForDate) {
+              // If status exists, check for confirmed/pending; otherwise default to confirmed.
+              if (bookingForDate.status) {
+                if (bookingForDate.status === "confirmed") {
+                  cellClass += " booking-confirmed";
+                } else if (bookingForDate.status === "pending") {
+                  cellClass += " booking-pending";
+                }
+              } else {
+                cellClass += " booking-confirmed";
+              }
+            } else if (cellDate.toDateString() === today.toDateString()) {
+              cellClass += " current-day";
+            }
 
             return (
-              <div
-                key={`${i}-${j}`}
-                className={`day-cell ${isToday ? "today" : ""}`}
-                onClick={() => handleDayClick(day)}
-              >
-                <div className="day-number">{day ? day : ""}</div>
-                {dayEvents && dayEvents.length > 0 && (
-                  <ul className="events-list">
-                    {dayEvents.map((event, index) => (
-                      <li key={index} className="event-item">
-                        {event}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+              <div key={`${i}-${j}`} className={cellClass}>
+                <div className="day-number">{day}</div>
               </div>
             );
           })
         )}
       </div>
-
-      {/* Modal for adding events */}
-      {selectedDay && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>
-              Add Event for{" "}
-              {selectedDay.toLocaleDateString("default", {
-                month: "long",
-                day: "numeric",
-                year: "numeric"
-              })}
-            </h3>
-            <input
-              type="text"
-              value={eventInput}
-              onChange={(e) => setEventInput(e.target.value)}
-              placeholder="Event details"
-            />
-            <div className="modal-buttons">
-              <button onClick={addEvent}>Add Event</button>
-              <button onClick={closeModal}>Cancel</button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
-};
+}
 
 export default CalendarPage;

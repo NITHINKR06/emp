@@ -8,6 +8,26 @@
   overflow: hidden;
 }
 
+.day-cell {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.booking-confirmed {
+  background-color: rgb(228, 34, 34);
+  color: white;
+}
+
+.booking-pending {
+  background-color: yellow;
+  color: black;
+}
+
+.today {
+  border: 2px solid #000;
+}
+
 /* Header Styling */
 .calendar-header {
   display: flex;
@@ -38,7 +58,7 @@
 }
 
 .calendar-header button:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(237, 237, 237, 0.4);
 }
 
 /* Grid Styling */
@@ -76,7 +96,7 @@
 }
 
 .day-cell:hover {
-  background: rgba(255, 140, 0, 0.15);
+  background: rgba(255, 255, 255, 0);
   transform: scale(1.05);
 }
 
@@ -154,7 +174,7 @@
 }
 
 .modal-buttons button:first-child:hover {
-  background-color: #b36b00;
+  background-color: #cc6d0045;
 }
 
 /* Secondary Button (Cancel) */
@@ -164,7 +184,8 @@
 }
 
 .modal-buttons button:last-child:hover {
-  background-color: #68625a;
+  background-color: #6c6c6c;
+  color: #000;
 }
 
 /* Responsive Adjustments for Mobile */

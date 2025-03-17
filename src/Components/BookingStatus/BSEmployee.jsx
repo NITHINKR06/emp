@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import '../../Css/BookingStatus.css';
 import Cookies from 'js-cookie';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
+import '../../Css/BSEmployee.css'; // Adjust the CSS path as necessary
 
+// BookingCard component displays a single booking card.
 const BookingCard = ({ booking, onClick }) => (
   <motion.div 
     className={`booking-card status-${booking.status.toLowerCase()}`}
@@ -18,18 +18,23 @@ const BookingCard = ({ booking, onClick }) => (
     <div className="card-content">
       <div className="card-header">
         <div className="job-info">
-          <h3 className="job-title">{booking.jobName}</h3>
+          <h3 className="job-title">Client: {booking.userName}</h3>
           <span className="job-priority">{booking.priority} Priority</span>
         </div>
         <span className={`status-badge ${booking.status.toLowerCase()}`}>
           {booking.status}
         </span>
       </div>
+
       <div className="card-details">
-        <div className="detail-items">
+        <div className="detail-item">
+          <span className="detail-icon">👤</span>
+          <span className="detail-text">Client: {booking.userName}</span>
+        </div>
+        <div className="detail-item">
           <span className="detail-icon">📅</span>
           <span className="detail-text">
-            {new Date(booking.bookingDate).toLocaleDateString('en-US', {
+            Work date - {new Date(booking.bookingDate).toLocaleDateString('en-US', {
               weekday: 'short', 
               year: 'numeric', 
               month: 'short', 
@@ -37,15 +42,16 @@ const BookingCard = ({ booking, onClick }) => (
             })}
           </span>
         </div>
-        <div className="detail-items">
+        <div className="detail-item">
           <span className="detail-icon">⏳</span>
-          <span className="detail-text">{booking.duration} Hours</span>
+          <span className="detail-text">Work hour - {booking.bookingTime}</span>
         </div>
       </div>
+
       <div className="card-footer">
         <div className="location-tag">
           <span className="location-icon">📍</span>
-          {booking.location}
+          Work address - {booking.location}
         </div>
       </div>
     </div>
@@ -54,31 +60,51 @@ const BookingCard = ({ booking, onClick }) => (
 
 export default function BookingStatus({ filters }) {
   const [bookings, setBookings] = useState([]);
+  // const [filters, setFilters] = useState({
+  //   searchTerm: '',
+  //   date: '',
+  //   time: '',
+  //   location: '',
+  // });
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [cancelReason, setCancelReason] = useState('');
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
   const BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
-  // Filter bookings based on provided filters
+  // Fetch bookings when the component mounts
+  useEffect(() => {
+    const fetchBookings = async () => {
+      const token = Cookies.get('token');
+      if (!token) return;
+      
+      try {
+        const { user } = jwtDecode(token);
+        const response = await axios.get(`${BASE_URL}/api/bookings/employee/${user.id}`);
+        setBookings(response.data);
+      } catch (error) {
+        console.error("Error fetching bookings:", error);
+      }
+    };
+
+    fetchBookings();
+  }, [BASE_URL]);
+
+  // Filter bookings based on search term, date, time, and location
   const filteredBookings = bookings.filter((booking) => {
     const bookingDate = new Date(booking.bookingDate);
-
-    // Compare dates by converting both to locale date strings (ignoring time)
     const matchesDate = filters.date
-      ? bookingDate.toLocaleDateString('en-US') === new Date(filters.date).toLocaleDateString('en-US')
+      ? bookingDate.toISOString().slice(0, 10) === filters.date
       : true;
 
-    // Compare times; ensure both values match the HH:MM format
     const matchesTime = filters.time
       ? bookingDate.toTimeString().slice(0, 5) === filters.time
       : true;
 
-    // Case-insensitive matching for location
     const matchesLocation = filters.location
       ? booking.location.toLowerCase().includes(filters.location.toLowerCase())
       : true;
 
-    // Case-insensitive search on userName and location
     const matchesSearchTerm = filters.searchTerm
       ? booking.userName.toLowerCase().includes(filters.searchTerm.toLowerCase()) ||
         booking.location.toLowerCase().includes(filters.searchTerm.toLowerCase())
@@ -87,37 +113,7 @@ export default function BookingStatus({ filters }) {
     return matchesDate && matchesTime && matchesLocation && matchesSearchTerm;
   });
 
-  useEffect(() => {
-    const token = Cookies.get('token');
-    if (!token) {
-      // Handle token absence (e.g., redirect to login)
-      return;
-    }
-    let userId;
-    try {
-      const decoded = jwtDecode(token);
-      userId = decoded.user.id;
-    } catch (err) {
-      console.error('Invalid token.');
-      return;
-    }
-
-    const fetchBookings = async () => {
-      try {
-        const response = await fetch(`${BASE_URL}/api/bookings/${userId}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setBookings(data);
-      } catch (error) {
-        console.error('Error fetching bookings:', error);
-      }
-    };
-
-    fetchBookings();
-  }, [BASE_URL]);
-
+  // Update booking status (confirm or cancel)
   const updateStatus = async (status) => {
     if (!selectedBooking) return;
   
@@ -138,7 +134,6 @@ export default function BookingStatus({ filters }) {
         }
       );
   
-      // Update local state for bookings list
       setBookings(bookings.map(b => 
         b._id === selectedBooking._id ? { ...b, status } : b
       ));
@@ -153,6 +148,7 @@ export default function BookingStatus({ filters }) {
 
   return (
     <div className="booking-container">
+      
       {filteredBookings.length === 0 ? (
         <div className="no-bookings">
           <h3>No Active Bookings</h3>
@@ -166,7 +162,7 @@ export default function BookingStatus({ filters }) {
           transition={{ duration: 0.5 }}
         >
           <AnimatePresence>
-            {filteredBookings.map(booking => (
+            {filteredBookings.map((booking) => (
               <BookingCard 
                 key={booking._id} 
                 booking={booking} 
@@ -176,7 +172,8 @@ export default function BookingStatus({ filters }) {
           </AnimatePresence>
         </motion.div>
       )}
-  
+
+      {/* Booking Details Modal */}
       <AnimatePresence>
         {selectedBooking && (
           <motion.div
@@ -192,11 +189,7 @@ export default function BookingStatus({ filters }) {
               exit={{ scale: 0.9 }}
             >
               <h2>Booking Details</h2>
-              <div className="modal-content">
-                <div className="detail-row">
-                  <span>Job Name:</span>
-                  <strong>{selectedBooking.jobName}</strong>
-                </div>
+              <div className="modal-contents">
                 <div className="detail-row">
                   <span>Client:</span>
                   <strong>{selectedBooking.userName}</strong>
@@ -228,10 +221,13 @@ export default function BookingStatus({ filters }) {
                 </div>
               </div>
               <div className="modal-actions">
-                {selectedBooking.status !== 'cancelled' && (
-                  <Link to={`/user/booking/status/${selectedBooking._id}`}>
-                    <button className="btn confirm-btn">Payment</button>
-                  </Link>
+                {selectedBooking.status !== 'confirmed' && selectedBooking.status !== 'cancelled' && (
+                  <button 
+                    className="btn confirm-btn"
+                    onClick={() => updateStatus('confirmed')}
+                  >
+                    Confirm Booking
+                  </button>
                 )}
                 {selectedBooking.status !== 'cancelled' && (
                   <button
@@ -239,6 +235,14 @@ export default function BookingStatus({ filters }) {
                     onClick={() => setShowCancelModal(true)}
                   >
                     Cancel Booking
+                  </button>
+                )}
+                {selectedBooking.status === 'confirmed' && (
+                  <button
+                    className="btn payment-status-btn"
+                    onClick={() => setShowPaymentModal(true)}
+                  >
+                    Payment Status
                   </button>
                 )}
                 <button
@@ -252,7 +256,8 @@ export default function BookingStatus({ filters }) {
           </motion.div>
         )}
       </AnimatePresence>
-  
+
+      {/* Cancel Booking Modal */}
       <AnimatePresence>
         {showCancelModal && (
           <motion.div
@@ -289,6 +294,39 @@ export default function BookingStatus({ filters }) {
                   onClick={() => setShowCancelModal(false)}
                 >
                   Go Back
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Payment Status Modal */}
+      <AnimatePresence>
+        {showPaymentModal && (
+          <motion.div
+            className="modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="payment-status-modal"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+            >
+              <h2>Payment Status</h2>
+              <div className="payment-details">
+                <p>Payment functionality is still under development.</p>
+                <p>Please check back later for updates.</p>
+              </div>
+              <div className="modal-actions">
+                <button
+                  className="btn close-payment-btn"
+                  onClick={() => setShowPaymentModal(false)}
+                >
+                  Close
                 </button>
               </div>
             </motion.div>

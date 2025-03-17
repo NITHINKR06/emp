@@ -157,7 +157,6 @@ export default function SignupPage() {
 
                   <div className="button-group">
                     <button type="button" className="submit-button" onClick={() => setStep(1)}>Back</button>
-                    <br />
                     <button type="submit" className="submit-button">SignUp</button>
                   </div>
                 </motion.form>

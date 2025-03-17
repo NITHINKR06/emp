@@ -23,6 +23,10 @@ body {
   gap: 15px;
 }
 
+.button-group .submit-button{
+  margin: 5px;
+}
+
 /* -------------------- Signup Card -------------------- */
 .signup-card {
   display: flex;

@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BookingStatus from '../../../../Components/BookingStatus/BookingStatus';
-import Search from '../../../../Components/SearchBox/Search';
+import ESearch from '../../../../Components/SearchBox/ESearch';
 
 export default function BookingStatu() {
+    const [filters, setFilters] = useState({
+      searchTerm: '',
+      date: '',
+      time: '',
+      location: '',
+    });
   return (
     <div
       style={{
-        marginTop: '45px', // equivalent to mt-10
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column', // stacking Search above BookingStatus
-      }}
+        marginTop:'100px'
+    }}
     >
-      <Search />
+        <ESearch filters={filters} setFilters={setFilters} />  
       <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '1rem', // equivalent to p-4
-        }}
       >
-        <BookingStatus />
+        <BookingStatus filters={filters}/>
       </div>
     </div>
   );

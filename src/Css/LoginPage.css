@@ -109,6 +109,7 @@
   background: transparent;
   height: 100%;             /* matches the parent's 50px */
   padding-right: 8px;       /* spacing from the toggle button */
+  padding-left: 8px;       /* spacing from the toggle button */
 }
 
 /* TOGGLE BUTTON: right side, same vertical alignment as icon & input */

@@ -16,7 +16,7 @@ const userLinks = [
 const employeeLinks = [
   { path: "/employee/booking", label: "Bookings" },
   { path: "/employee/profile", label: "Dashboard" },
-  { path: "/tasks", label: "My Tasks" },
+  // { path: "/tasks", label: "My Tasks" },
 ];
 
 const publicLinks = [

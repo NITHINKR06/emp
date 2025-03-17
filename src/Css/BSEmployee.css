@@ -1,0 +1,341 @@
+:root {
+    --primary-blue: #eb7e25;
+    --success-green: #16a34a;
+    --danger-red: #dc2626;
+    --text-dark: #1e293b;
+    --text-medium: #475569;
+    --text-light: #64748b;
+    --bg-light: #f8fafc;
+    --border-color: #e2e8f0;
+    --radius-lg: 12px;
+    --radius-md: 8px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* Base Styles */
+  .booking-container {
+    padding: 2rem 1rem;
+    /* min-height: 100vh; */
+    /* margin-top: 80px; */
+  }
+  
+  .booking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    width: auto;
+    margin: 0 auto;
+  }
+  
+  /* Booking Card */
+  .booking-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+  }
+  
+  .booking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+  }
+  
+  .job-title {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .job-priority {
+    font-size: 0.8rem;
+    color: var(--text-medium);
+    background: #f1f5f9;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  
+  .status-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  
+  .status-badge.pending {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+  
+  .status-badge.confirmed {
+    background: #dcfce7;
+    color: #166534;
+  }
+  
+  .status-badge.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+  
+  .card-details {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-medium);
+  }
+  
+  .detail-icon {
+    font-size: 1.1rem;
+  }
+  
+  .card-footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .location-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-medium);
+    font-size: 0.9rem;
+  }
+  
+  /* Modals */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.594);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .details-modal {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .cancel-modal {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .modal-content {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .detail-row span:first-child {
+    color: var(--text-medium);
+  }
+  
+  .status-text {
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .status-text.confirmed {
+    color: var(--success-green);
+  }
+  
+  .status-text.pending {
+    color: var(--danger-red);
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .confirm-btn {
+    background: var(--success-green);
+    color: white;
+  }
+  
+  .cancel-btn {
+    background: var(--danger-red);
+    color: white;
+  }
+  
+  .close-btn {
+    background: var(--border-color);
+    color: var(--text-dark);
+  }
+  
+  .confirm-cancel-btn {
+    background: var(--danger-red);
+    color: white;
+    width: 100%;
+  }
+  
+  .cancel-action-btn {
+    background: var(--border-color);
+    color: var(--text-dark);
+    width: 100%;
+  }
+  
+  .modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Cancellation Reason Input */
+  .reason-input {
+    width: 80%;
+    height: 50px;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin: 1rem 0;
+    resize: vertical;
+  }
+  
+  .cancel-warning {
+    color: var(--text-medium);
+    margin: 1rem 0;
+  }
+  
+  /* No Bookings */
+  .no-bookings {
+    text-align: center;
+    padding: 4rem;
+    color: var(--text-medium);
+  }
+  
+  .no-bookings h3 {
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .booking-container {
+      padding: 1rem;
+    }
+  
+    .details-modal, .cancel-modal {
+      padding: 1.5rem;
+    }
+  
+    .modal-actions {
+      flex-direction: column;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  }
+
+  /* Payment Status Modal Container */
+.payment-status-modal {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px 30px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Header for the Payment Status Modal */
+.payment-status-modal h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Payment Details Section */
+.payment-status-modal .payment-details {
+  margin-bottom: 20px;
+}
+
+.payment-status-modal .payment-details p {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+/* Modal Actions Container for Payment Status Modal */
+.payment-status-modal .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Button Styles within the Payment Status Modal */
+.payment-status-modal .modal-actions .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.payment-status-modal .modal-actions .btn:hover {
+  background: #0056b3;
+}
+
+/* Responsive Adjustments for Payment Status Modal */
+@media (max-width: 480px) {
+  .payment-status-modal {
+    padding: 15px 20px;
+  }
+  .payment-status-modal h2 {
+    font-size: 20px;
+  }
+  .payment-status-modal .modal-actions .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
