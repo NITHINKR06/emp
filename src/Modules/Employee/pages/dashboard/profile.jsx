@@ -11,7 +11,6 @@ import {
   FaStar, 
   FaStarHalfAlt,
   FaRegStar, 
-  FaCommentDots 
 } from 'react-icons/fa';
 import "../../../../Css/EmployeeProfile.css";
 

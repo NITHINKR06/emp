@@ -1,8 +1,12 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { Atom } from "react-loading-indicators"; // Import the Atom loader
 import "./App.css";
+import PrivacyPolicy from "./Components/Footer/Legal/PrivacyPolicy";
+import RefundPolicy from "./Components/Footer/Legal/RefundPolicy";
+import Accessibility from "./Components/Footer/Legal/Accessibility";
 
-// Lazy loaded components for improved performance
+// Lazy loaded components
 const Home = lazy(() => import("./Modules/Home"));
 const AboutUs = lazy(() => import("./Components/about/page"));
 const FaqPage = lazy(() => import("./Components/FAQ/FAQPage"));
@@ -15,7 +19,6 @@ const ERoute = lazy(() => import("./Modules/Employee/router/eroute"));
 const Error = lazy(() => import("./Modules/Error"));
 const NavbarWrapper = lazy(() => import("./Components/Navbar/WrappedNav"));
 const Footer = lazy(() => import("./Components/Footer/Footer"));
-const PrivateRoute = lazy(() => import("./auth/PrivateRoute"));
 const PreventAccess = lazy(() => import("./auth/PreventAuth"));
 
 // Layout component that wraps common elements like Navbar and Footer
@@ -29,18 +32,40 @@ const Layout = () => (
   </>
 );
 
+// Centered Fallback Loader
+const Loader = () => (
+  <div style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+  }}>
+    <Atom 
+      color="#fd8600" 
+      size="large" // Try "xlarge" or manually set width/height
+      width="100px"  // Adjusted width
+      height="100px" // Adjusted height
+      text="KaarmiQ" 
+      textColor="#f1853a" 
+    />
+  </div>
+);
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <Routes>
             {/* Shared layout for all pages */}
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<AboutUs />} />
-              <Route path="/faq" element={<FaqPage />} />
+              <Route path="/faqs" element={<FaqPage />} />
               <Route path="/contacts" element={<ContactForm />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/accessibility" element={<Accessibility />} />
 
               {/* Public Auth Routes with PreventAccess to block authenticated users */}
               <Route
@@ -71,19 +96,11 @@ function App() {
               {/* Protected Routes */}
               <Route
                 path="/user/*"
-                element={
-                  // <PrivateRoute>
-                    <URoute />
-                  // </PrivateRoute>
-                }
+                element={<URoute />}
               />
               <Route
                 path="/employee/*"
-                element={
-                  // <PrivateRoute>
-                    <ERoute />
-                  // </PrivateRoute>
-                }
+                element={<ERoute />}
               />
 
               {/* Fallback for unmatched routes */}

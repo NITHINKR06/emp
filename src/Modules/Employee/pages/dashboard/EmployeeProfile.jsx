@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
 import Profile from './profile';
+import { useNavigate } from 'react-router-dom';
 
 export default function EmployeeProfile() {
     const [employee, setEmployee] = useState(null);
     const [error, setError] = useState(null);
+    const navigate = useNavigate('')
 
     const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
   
@@ -59,6 +61,8 @@ export default function EmployeeProfile() {
   
     // Simple conditional rendering based on data/error state
     if (error) {
+      Cookies.remove("token");
+      navigate('/auth/login')
       return <div>{error}</div>;
     }
   

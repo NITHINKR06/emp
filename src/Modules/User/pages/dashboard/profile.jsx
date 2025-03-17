@@ -5,13 +5,7 @@ import { Link } from 'react-router-dom';
 import { 
   FaEnvelope, 
   FaMapMarkerAlt, 
-  FaGraduationCap, 
-  FaBriefcase, 
   FaInfoCircle, 
-  FaStar, 
-  FaStarHalfAlt,
-  FaRegStar, 
-  FaCommentDots 
 } from 'react-icons/fa';
 import "../../../../Css/EmployeeProfile.css";
 
@@ -20,8 +14,6 @@ function Profile({ user }) {
   // Extract only the file name from the full path
   const fileName = user?.profilePhotoUrl ? user.profilePhotoUrl.split('\\').pop() : '';
   const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
-
-  console.log(fileName,'file')
   
   // Container animation using spring physics and staggered children
   const containerVariants = {

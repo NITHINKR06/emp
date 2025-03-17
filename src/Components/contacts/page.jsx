@@ -82,7 +82,7 @@ export default function EmploymentContactForm() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="form-field">
-              <label className="form-label">Cover Letter</label>
+              <label className="form-label">Query (message)</label>
               <textarea rows="4" className="form-input" required></textarea>
             </motion.div>
 

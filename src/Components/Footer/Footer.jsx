@@ -1,15 +1,15 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaTwitter, FaGithub, FaDribbble } from "react-icons/fa";
-import "../../Css/Footer.css"; // Import the separate CSS file
+import "../../Css/Footer.css"; // Import the CSS file
 
 export default function Footer() {
   const socialLinks = [
-    { name: "Facebook", link: "#", icon: <FaFacebookF className="social-icon" /> },
-    { name: "Instagram", link: "#", icon: <FaInstagram className="social-icon" /> },
-    { name: "Twitter", link: "#", icon: <FaTwitter className="social-icon" /> },
-    { name: "GitHub", link: "#", icon: <FaGithub className="social-icon" /> },
-    { name: "Dribbble", link: "#", icon: <FaDribbble className="social-icon" /> },
+    { name: "Facebook", link: "#", icon: <FaFacebookF /> },
+    { name: "Instagram", link: "#", icon: <FaInstagram /> },
+    { name: "Twitter", link: "#", icon: <FaTwitter /> },
+    { name: "GitHub", link: "#", icon: <FaGithub /> },
+    { name: "Dribbble", link: "#", icon: <FaDribbble /> },
   ];
 
   const location = useLocation();
@@ -20,7 +20,6 @@ export default function Footer() {
     return null; // Hide footer on auth pages
   }
 
-  // Define footer sections with individual links
   const footerSections = [
     {
       title: "Company",
@@ -44,62 +43,60 @@ export default function Footer() {
       links: [
         { name: "Accessibility", route: "/accessibility" },
         { name: "Refund Policy", route: "/refund-policy" },
-        { name: "Privacy Policy", route: "/privacy-policy" },
+        { name: "Privacy Policy", route: "/privacy" },
       ],
     },
   ];
 
   return (
     <footer className="footer">
-      <div className="footer-shadow">
-        <div className="footer-inner">
-          <div className="footer-grid">
-            {/* Left Section */}
-            <div className="footer-left">
-              <h1 className="footer-logo">KaarmiQ</h1>
-              <p className="footer-description">
-                Join us to unlock your potential with a wide variety of courses designed just for you.
-              </p>
-              <ul className="social-links">
-                {socialLinks.map((social, index) => (
-                  <li key={index}>
-                    <Link
-                      to={social.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="social-link"
-                    >
-                      {social.icon}
-                      <span className="sr-only">{social.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Right Section */}
-            <div className="footer-right">
-              {footerSections.map((section, index) => (
-                <div key={index} className="footer-section">
-                  <p className="footer-section-title">{section.title}</p>
-                  <ul className="footer-links">
-                    {section.links.map((link, i) => (
-                      <li key={i}>
-                        <Link to={link.route} className="footer-link">
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+      <div className="footer-inner">
+        <div className="footer-grid">
+          {/* Left Section */}
+          <div className="footer-left">
+            <h1 className="footer-logo">KaarmiQ</h1>
+            <p className="footer-description">
+              Join us to unlock your potential with a wide variety of courses designed just for you.
+            </p>
+            <ul className="social-links">
+              {socialLinks.map((social, index) => (
+                <li key={index} className="social-item">
+                  <Link
+                    to={social.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-link"
+                  >
+                    {social.icon}
+                    <span className="tooltip">{social.name}</span>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          <p className="footer-copyright">
-            &copy; 2025. KaarmiQ. All rights reserved.
-          </p>
+          {/* Right Section */}
+          <div className="footer-right">
+            {footerSections.map((section, index) => (
+              <div key={index} className="footer-section">
+                <p className="footer-section-title">{section.title}</p>
+                <ul className="footer-links">
+                  {section.links.map((link, i) => (
+                    <li key={i}>
+                      <Link to={link.route} className="footer-link">
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
+
+        <p className="footer-copyright">
+          &copy; {new Date().getFullYear()} KaarmiQ. All rights reserved.
+        </p>
       </div>
     </footer>
   );
