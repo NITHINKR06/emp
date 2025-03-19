@@ -6,6 +6,58 @@
   --hover-primary: #ff820d;
 }
 
+/* Documentation Modal Styles */
+.docs-modal .modal-content {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.docs-modal .modal-header {
+  background: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  padding: 1.5rem;
+}
+
+.docs-modal .modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.docs-modal .modal-body {
+  padding: 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.doc-section {
+  margin-bottom: 2rem;
+}
+
+.doc-section h3 {
+  color: #34495e;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #eee;
+}
+
+.doc-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.doc-section li {
+  padding: 0.5rem 0;
+  color: #4a5568;
+}
+
+.docs-modal .modal-footer {
+  border-top: 2px solid #dee2e6;
+  padding: 1rem 1.5rem;
+}
+
 /* Navbar Header */
 .navbar-header {
   font-family: sans-serif;
