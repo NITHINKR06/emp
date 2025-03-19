@@ -6,7 +6,7 @@ import PrivacyPolicy from "./Components/Footer/Legal/PrivacyPolicy";
 import RefundPolicy from "./Components/Footer/Legal/RefundPolicy";
 import Accessibility from "./Components/Footer/Legal/Accessibility";
 
-// Lazy loaded components
+// Lazy loaded components for public routes
 const Home = lazy(() => import("./Modules/Home"));
 const AboutUs = lazy(() => import("./Components/about/page"));
 const FaqPage = lazy(() => import("./Components/FAQ/FAQPage"));
@@ -21,7 +21,12 @@ const NavbarWrapper = lazy(() => import("./Components/Navbar/WrappedNav"));
 const Footer = lazy(() => import("./Components/Footer/Footer"));
 const PreventAccess = lazy(() => import("./auth/PreventAuth"));
 
-// Layout component that wraps common elements like Navbar and Footer
+// Lazy loaded components for admin routes
+const AdminRoute = lazy(() => import("./Modules/admin/routes/AdminRoute")); // Gatekeeper for admin routes
+// const AdminDashboard = lazy(() => import("./Modules/admin/pages/AdminDashboard"));
+// Add more admin components as needed
+
+// Layout component for non-admin pages (with Navbar and Footer)
 const Layout = () => (
   <>
     <NavbarWrapper />
@@ -32,21 +37,23 @@ const Layout = () => (
   </>
 );
 
-// Centered Fallback Loader
+// Centered fallback loader
 const Loader = () => (
-  <div style={{
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-  }}>
-    <Atom 
-      color="#fd8600" 
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+    }}
+  >
+    <Atom
+      color="#fd8600"
       size="large" // Try "xlarge" or manually set width/height
-      width="100px"  // Adjusted width
+      width="100px" // Adjusted width
       height="100px" // Adjusted height
-      text="KaarmiQ" 
-      textColor="#f1853a" 
+      text="KaarmiQ"
+      textColor="#f1853a"
     />
   </div>
 );
@@ -57,11 +64,14 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<Loader />}>
           <Routes>
-            {/* Shared layout for all pages */}
+            {/* Admin Routes - outside of the Layout */}
+            <Route path="/admin/*" element={<AdminRoute />}/>
+
+            {/* Shared layout for all public routes */}
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<AboutUs />} />
-              <Route path="/faqs" element={<FaqPage />} />
+              <Route path="/faq" element={<FaqPage />} />
               <Route path="/contacts" element={<ContactForm />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/refund-policy" element={<RefundPolicy />} />
@@ -94,14 +104,8 @@ function App() {
               />
 
               {/* Protected Routes */}
-              <Route
-                path="/user/*"
-                element={<URoute />}
-              />
-              <Route
-                path="/employee/*"
-                element={<ERoute />}
-              />
+              <Route path="/user/*" element={<URoute />} />
+              <Route path="/employee/*" element={<ERoute />} />
 
               {/* Fallback for unmatched routes */}
               <Route path="*" element={<Error />} />
