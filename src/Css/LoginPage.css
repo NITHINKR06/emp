@@ -55,7 +55,7 @@ body {
 /* Left Image Section */
 .card-left {
   flex: 1;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
   display: flex;
   align-items: center;
   justify-content: center;
