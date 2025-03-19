@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"; // import js-cookie
 import "../../Css/LoginPage.css";
 
+import randomImage from '../../img/login.png'
+
 const cardAnimation = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: {
@@ -50,10 +52,10 @@ export default function LoginPage() {
     }
   };
 
-  const images = [
-    // "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg",
-  ];
-  const randomImage = images[Math.floor(Math.random() * images.length)];
+  // const images = [
+  //   // "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg",
+  // ];
+  // const randomImage = images[Math.floor(Math.random() * images.length)];
 
   return (
     <div className="login-container">
@@ -67,7 +69,7 @@ export default function LoginPage() {
         <div className="login-card-inner">
           {/* Left Image Section */}
           <div className="card-left">
-            <img src={randomImage} alt="Signup Image" className="card-image" />
+            <img src={randomImage} alt="Signup Image" className="login-card-image" />
           </div>
           {/* Right Content Section */}
           <div className="login-card-content">
