@@ -51,7 +51,7 @@ export default function LoginPage() {
   };
 
   const images = [
-    "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg",
+    // "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg",
   ];
   const randomImage = images[Math.floor(Math.random() * images.length)];
 
