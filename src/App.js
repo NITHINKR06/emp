@@ -108,8 +108,8 @@ function App() {
               <Route path="/employee/*" element={<ERoute />} />
 
               {/* Fallback for unmatched routes */}
-              <Route path="*" element={<Error />} />
             </Route>
+              <Route path="*" element={<Error />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
