@@ -25,10 +25,10 @@ export default function SignupPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
 
-  const BASE_URL = process.env.BACKEND_URL;
+  const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
 
   if(!BASE_URL){
-    console.log("Signup error connection is not found ");
+    console.log("Signup error connection is not found " , BASE_URL);
   };
 
   const handleNextStep = (e) => {
