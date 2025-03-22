@@ -27,6 +27,10 @@ export default function SignupPage() {
 
   const BASE_URL = process.env.BACKEND_URL || 'http://localhost:5000';
 
+  if(!BASE_URL){
+    console.log("Signup error connection is not found ");
+  };
+
   const handleNextStep = (e) => {
     e.preventDefault();
     if (!username || !email) {
