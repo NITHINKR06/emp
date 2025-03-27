@@ -15,7 +15,7 @@ const BookingCard = ({ booking, onClick }) => (
     transition={{ duration: 0.3 }}
     onClick={() => onClick(booking)}
   >
-    <div className="card-content">
+    <div className="card-cotent">
       <div className="card-header">
         <div className="job-info">
           <h3 className="job-title">{booking.jobName}</h3>
@@ -25,7 +25,7 @@ const BookingCard = ({ booking, onClick }) => (
           {booking.status}
         </span>
       </div>
-      <div className="card-details">
+      <div className="card-detils">
         <div className="detail-items">
           <span className="detail-icon">📅</span>
           <span className="detail-text">
@@ -37,12 +37,12 @@ const BookingCard = ({ booking, onClick }) => (
             })}
           </span>
         </div>
-        <div className="detail-items">
+        <div className="detail-itms">
           <span className="detail-icon">⏳</span>
           <span className="detail-text">{booking.duration} Hours</span>
         </div>
       </div>
-      <div className="card-footer">
+      <div className="card-fooer">
         <div className="location-tag">
           <span className="location-icon">📍</span>
           {booking.location}

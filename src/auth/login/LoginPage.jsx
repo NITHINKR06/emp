@@ -1,20 +1,10 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"; // import js-cookie
 import "../../Css/LoginPage.css";
 
-import randomImage from '../../img/login.png'
-
-const cardAnimation = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.1 },
-  },
-};
+import randomImage from '../../img/login.png';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -27,13 +17,8 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // Make a POST request to the login endpoint
       const res = await axios.post(`${BASE_URL}/api/auth/login`, { email, password });
-      // console.log("Login successful. Token:", res.data.token);
       
-      // Store token in a cookie with an expiration of 7 days, secure flag, and sameSite policy
-      // Cookies.set("token", res.data.token, { expires: 7, secure: true, sameSite: "Strict" });
-
       const cookieOptions = {
         expires: 7,
         sameSite: "Strict",
@@ -41,37 +26,22 @@ export default function LoginPage() {
       };
       
       Cookies.set("token", res.data.token, cookieOptions);      
-
       navigate("/");
     } catch (err) {
       console.log(
         "Error logging in:",
         err.response ? err.response.data.msg : err.message
       );
-      // Optionally, display an error message to the user here
     }
   };
 
-  // const images = [
-  //   // "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg",
-  // ];
-  // const randomImage = images[Math.floor(Math.random() * images.length)];
-
   return (
     <div className="login-container">
-      {/* Login Card */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={cardAnimation}
-        className="login-card"
-      >
+      <div className="login-card">
         <div className="login-card-inner">
-          {/* Left Image Section */}
           <div className="card-left">
-            <img src={randomImage} alt="Signup Image" className="login-card-image" />
+            <img src={randomImage} alt="Signup" className="login-card-image" />
           </div>
-          {/* Right Content Section */}
           <div className="login-card-content">
             <h2 className="login-title">Login</h2>
             <form onSubmit={handleLogin} className="login-form">
@@ -111,19 +81,13 @@ export default function LoginPage() {
             </form>
           </div>
         </div>
-      </motion.div>
-      {/* Sign up Card */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={cardAnimation}
-        className="back-login-card"
-      >
+      </div>
+      <div className="back-login-card">
         <span className="signup-text">Don't have an account?</span>
         <a href="/auth/signup" className="signup-link">
           Sign up
         </a>
-      </motion.div>
+      </div>
     </div>
   );
 }

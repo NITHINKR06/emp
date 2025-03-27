@@ -13,21 +13,14 @@
   --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Base Styles */
-.booking-container {
-  padding: 2rem 1rem;
-  /* min-height: 100vh; */
-  /* margin-top: 80px; */
-}
-
-.booking-grid {
+/* .booking-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   max-width: 1200px;
   width: auto;
   margin: 0 auto;
-}
+} */
 
 /* Booking Card */
 .booking-card {
@@ -36,28 +29,22 @@
   box-shadow: var(--shadow-sm);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   overflow: hidden;
-}
-
-.booking-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-}
-
-.card-content {
-  padding: 1.5rem;
+  height: 300px;
+  width: 350px;
 }
 
 .card-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .job-title {
   font-size: 1.25rem;
   color: var(--text-dark);
   margin: 0 0 0.5rem 0;
+  padding-right: 30px;
 }
 
 .job-priority {
@@ -94,7 +81,7 @@
 
 .card-details {
   display: grid;
-  gap: 1rem;
+  gap: 1.2rem;
   margin: 1.5rem 0;
 }
 
