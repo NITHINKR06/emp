@@ -58,7 +58,7 @@ const AdminRoutes = () => {
         <Route path="verify-code" element={<CodeVerification />} />
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="analytics" element={<UserAnalytics />} />
-        <Route path="register" element={<EmailEntry />} />
+        <Route path="login" element={<EmailEntry />} />
         <Route path="setup" element={<AdminSetup />} />
         {/* Fallback admin route */}
         <Route path="*" element={<Navigate to="verify-code" replace />} />

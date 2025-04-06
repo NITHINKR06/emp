@@ -10,7 +10,7 @@ export default function NavBar({ children }) {
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
-    setShowModal(false)
+    setShowModal(false);
     navigate('/admin'); // Redirect to admin login page after logout
   };
 
@@ -18,9 +18,9 @@ export default function NavBar({ children }) {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <Link to="/admin/dashboard" className="navbar-brand">
+          <h1 className="navbar-brand">
             Administrator
-          </Link>
+          </h1>
           <button
             className="navbar-toggler"
             type="button"
@@ -33,22 +33,30 @@ export default function NavBar({ children }) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <Link to="/admin/dashboard" className="nav-link">
-                  Dashboard
+            {isAdminLoggedIn ? (
+              <>
+                <ul className="navbar-nav me-auto">
+                  <li className="nav-item">
+                    <Link to="/admin/dashboard" className="nav-link">
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/admin/analytics" className="nav-link">
+                      User Analytics
+                    </Link>
+                  </li>
+                </ul>
+                <button className="btn btn-danger" onClick={() => setShowModal(true)}>
+                  Logout
+                </button>
+              </>
+            ) : (
+              <div className="ms-auto">
+                <Link to="/admin/login" className="btn btn-primary">
+                  Login
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/admin/analytics" className="nav-link">
-                  User Analytics
-                </Link>
-              </li>
-            </ul>
-            {isAdminLoggedIn && (
-              <button className="btn btn-danger" onClick={() => setShowModal(true)}>
-                Logout
-              </button>
+              </div>
             )}
           </div>
         </div>
@@ -60,9 +68,7 @@ export default function NavBar({ children }) {
         <Modal.Header closeButton>
           <Modal.Title>Confirm Logout</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          Are you sure you want to log out?
-        </Modal.Body>
+        <Modal.Body>Are you sure you want to log out?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Cancel
