@@ -23,7 +23,7 @@ const AdminRoute = () => {
     };
 
     checkAdminExists();
-  }, [BASE_URL]);
+  }, []);
 
   // Display a loading message until the admin existence check completes.
   if (adminExists === null) {
@@ -40,45 +40,45 @@ const AdminRoute = () => {
           <>
             {/* If admin is logged in, redirect verify-code to dashboard */}
             <Route
-              path="/admin/verify-code"
+              path="verify-code"
               element={
                 adminLoggedIn ? (
-                  <Navigate to="/dashboard" replace />
+                  <Navigate to="dashboard" replace />
                 ) : (
                   <CodeVerification />
                 )
               }
             />
             <Route
-              path="/dashboard"
+              path="dashboard"
               element={
                 adminLoggedIn ? (
                   <AdminDashboard />
                 ) : (
-                  <Navigate to="/admin/verify-code" replace />
+                  <Navigate to="verify-code" replace />
                 )
               }
             />
             <Route
-              path="/analytics"
+              path="analytics"
               element={
                 adminLoggedIn ? (
                   <UserAnalytics />
                 ) : (
-                  <Navigate to="/admin/verify-code" replace />
+                  <Navigate to="verify-code" replace />
                 )
               }
             />
-            <Route path="/register" element={<EmailEntry />} />
+            <Route path="register" element={<EmailEntry />} />
             {/* Catch-all: redirect any unknown route to verify-code */}
-            <Route path="/*" element={<Navigate to="/admin/verify-code" replace />} />
+            <Route path="*" element={<Navigate to="verify-code" replace />} />
           </>
         ) : (
           <>
             {/* If no admin exists, force setup */}
-            <Route path="/setup" element={<AdminSetup />} />
+            <Route path="setup" element={<AdminSetup />} />
             {/* Catch-all: redirect unknown routes to /setup */}
-            <Route path="/*" element={<Navigate to="/setup" replace />} />
+            <Route path="*" element={<Navigate to="setup" replace />} />
           </>
         )}
       </Routes>
