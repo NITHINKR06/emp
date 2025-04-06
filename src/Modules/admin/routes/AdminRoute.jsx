@@ -40,7 +40,7 @@ const AdminRoute = () => {
           <>
             {/* If admin is logged in, redirect verify-code to dashboard */}
             <Route
-              path="/verify-code"
+              path="/admin/verify-code"
               element={
                 adminLoggedIn ? (
                   <Navigate to="/dashboard" replace />
@@ -55,7 +55,7 @@ const AdminRoute = () => {
                 adminLoggedIn ? (
                   <AdminDashboard />
                 ) : (
-                  <Navigate to="/verify-code" replace />
+                  <Navigate to="/admin/verify-code" replace />
                 )
               }
             />
@@ -65,20 +65,20 @@ const AdminRoute = () => {
                 adminLoggedIn ? (
                   <UserAnalytics />
                 ) : (
-                  <Navigate to="/verify-code" replace />
+                  <Navigate to="/admin/verify-code" replace />
                 )
               }
             />
             <Route path="/register" element={<EmailEntry />} />
             {/* Catch-all: redirect any unknown route to verify-code */}
-            <Route path="/*" element={<Navigate to="/verify-code" replace />} />
+            <Route path="/*" element={<Navigate to="/admin/verify-code" replace />} />
           </>
         ) : (
           <>
             {/* If no admin exists, force setup */}
             <Route path="/setup" element={<AdminSetup />} />
             {/* Catch-all: redirect unknown routes to /setup */}
-            <Route path="/*" element={<Navigate to="/admin/setup" replace />} />
+            <Route path="/*" element={<Navigate to="/setup" replace />} />
           </>
         )}
       </Routes>
