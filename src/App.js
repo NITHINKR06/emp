@@ -52,7 +52,7 @@ const Loader = () => (
       size="large" // Try "xlarge" or manually set width/height
       width="100px" // Adjusted width
       height="100px" // Adjusted height
-      text="KaarmiQ"
+      text="Shram"
       textColor="#f1853a"
     />
   </div>

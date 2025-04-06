@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import AdminDashboard from '../pages/AdminDashboard';
 import CodeVerification from '../pages/CodeVerification';
@@ -10,8 +10,7 @@ import NavBar from '../pages/NavBar';
 
 const AdminRoute = () => {
   const [adminExists, setAdminExists] = useState(null);
-  const navigate = useNavigate();
-  const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
+  const BASE_URL = 'http://localhost:5000';
 
   useEffect(() => {
     const checkAdminExists = async () => {
@@ -26,39 +25,60 @@ const AdminRoute = () => {
     checkAdminExists();
   }, [BASE_URL]);
 
-  // Show a loading message until the admin existence check completes.
+  // Display a loading message until the admin existence check completes.
   if (adminExists === null) {
     return <div className="text-center mt-5">Loading...</div>;
   }
+
+  // Check if admin is logged in by verifying localStorage for an admin token.
+  const adminLoggedIn = Boolean(localStorage.getItem('adminToken'));
 
   return (
     <NavBar>
       <Routes>
         {adminExists ? (
-          // Admin exists: render routes for the logged-in admin workflow.
           <>
-            <Route path="/verify-code" element={<CodeVerification />} />
+            {/* If admin is logged in, redirect verify-code to dashboard */}
             <Route
-              path="/dashboard"
+              path="/verify-code"
               element={
-                localStorage.getItem('adminToken') ? (
-                  <AdminDashboard />
+                adminLoggedIn ? (
+                  <Navigate to="/dashboard" replace />
                 ) : (
-                  <Navigate to="/admin" replace />
+                  <CodeVerification />
                 )
               }
             />
-            <Route path="/analytics" element={<UserAnalytics />} />
-            <Route path="/" element={<EmailEntry />} />
-            {/* Catch-all: redirect any unknown route to the default */}
-            <Route path="/*" element={<Navigate to="/admin" replace />} />
+            <Route
+              path="/dashboard"
+              element={
+                adminLoggedIn ? (
+                  <AdminDashboard />
+                ) : (
+                  <Navigate to="/verify-code" replace />
+                )
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                adminLoggedIn ? (
+                  <UserAnalytics />
+                ) : (
+                  <Navigate to="/verify-code" replace />
+                )
+              }
+            />
+            <Route path="/register" element={<EmailEntry />} />
+            {/* Catch-all: redirect any unknown route to verify-code */}
+            <Route path="/*" element={<Navigate to="/verify-code" replace />} />
           </>
         ) : (
-          // Admin does NOT exist: force user to complete admin setup.
           <>
+            {/* If no admin exists, force setup */}
             <Route path="/setup" element={<AdminSetup />} />
-            {/* Catch-all: redirect any unknown route to /setup */}
-            <Route path="/*" element={<Navigate to="/admin" replace />} />
+            {/* Catch-all: redirect unknown routes to /setup */}
+            <Route path="/*" element={<Navigate to="/admin/setup" replace />} />
           </>
         )}
       </Routes>

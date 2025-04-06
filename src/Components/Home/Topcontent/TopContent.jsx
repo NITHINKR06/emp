@@ -63,6 +63,7 @@ export default function TopContent() {
           Discover courses crafted to enhance your skills and fuel your passion. 
           Start your journey today!
         </motion.p>
+        {/*  
         <motion.div className="button-container" variants={itemVariants}>
           <motion.button 
             className="button primary"
@@ -79,6 +80,7 @@ export default function TopContent() {
             Explore Courses
           </motion.button>
         </motion.div>
+        */}
       </motion.div>
 
       {/* Right Section - Image */}
