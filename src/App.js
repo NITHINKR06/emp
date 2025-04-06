@@ -3,12 +3,12 @@ import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom
 import axios from "axios";
 import { Atom } from "react-loading-indicators";
 import "./App.css";
-import AdminDashboard from "./Modules/admin/pages//AdminDashboard";
-import CodeVerification from "./Modules/admin/pages//CodeVerification";
+import AdminDashboard from "./Modules/admin/pages/AdminDashboard";
+import CodeVerification from "./Modules/admin/pages/CodeVerification";
 import AdminSetup from './Modules/admin/pages/AdminSetup'
-import EmailEntry from "./Modules/admin/pages//EmailEntry";
-import UserAnalytics from "./Modules/admin/pages//UserAnalytics";
-import NavBar from "./Modules/admin/pages//NavBar";
+import EmailEntry from "./Modules/admin/pages/EmailEntry";
+import UserAnalytics from "./Modules/admin/pages/UserAnalytics";
+import NavBar from "./Modules/admin/pages/NavBar";
 
 // Public pages (lazy-loaded)
 const Home = lazy(() => import("./Modules/Home"));
