@@ -95,7 +95,7 @@ function Navbar() {
       <header className="navbar-header">
         <div className="navbar-inner">
           <Link to="/" className="navbar-logo">
-            KaarmiQ
+            Shram
           </Link>
 
           <nav className="desktop-nav">

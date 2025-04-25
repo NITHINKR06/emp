@@ -54,7 +54,7 @@ export default function Footer() {
         <div className="footer-grid">
           {/* Left Section */}
           <div className="footer-left">
-            <h1 className="footer-logo">KaarmiQ</h1>
+            <h1 className="footer-logo">Shram</h1>
             <p className="footer-description">
               Join us to unlock your potential with a wide variety of courses designed just for you.
             </p>
@@ -95,7 +95,7 @@ export default function Footer() {
         </div>
 
         <p className="footer-copyright">
-          &copy; {new Date().getFullYear()} KaarmiQ. All rights reserved.
+          &copy; {new Date().getFullYear()} Shram. All rights reserved.
         </p>
       </div>
     </footer>
