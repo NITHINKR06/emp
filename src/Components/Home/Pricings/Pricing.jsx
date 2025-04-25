@@ -86,7 +86,7 @@ function Pricing() {
                 animate="visible"
                 transition={{ duration: 0.3 }}
               >
-                {billingCycle === "monthly" ? "$5" : "$50"}
+                {billingCycle === "monthly" ? "Rs. 435" : "Rs. 4350"}
               </motion.span>
               <span>/ {billingCycle}</span>
             </p>
@@ -131,7 +131,7 @@ function Pricing() {
                 animate="visible"
                 transition={{ duration: 0.3 }}
               >
-                {billingCycle === "monthly" ? "$15" : "$150"}
+                {billingCycle === "monthly" ? "Rs. 1305" : "Rs. 13050"}
               </motion.span>
               <span>/ {billingCycle}</span>
             </p>
@@ -176,7 +176,7 @@ function Pricing() {
                 animate="visible"
                 transition={{ duration: 0.3 }}
               >
-                {billingCycle === "monthly" ? "$25" : "$250"}
+                {billingCycle === "monthly" ? "Rs. 2175" : "Rs. 21750"}
               </motion.span>
               <span>/ {billingCycle}</span>
             </p>
